@@ -1,13 +1,10 @@
 import time
 import colorama
-import tkinter as ademir
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import pyautogui
 import os
 import glob
-import re
-import pandas
+import pandas 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import *
@@ -17,14 +14,7 @@ import requests
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# from sj_pge import SjPge classe do PGE, PRA IMPORTAR, TÁ? VIDA!!
-
-
-"""
-Autor: Adriano Angioletto, Arthur Bittencourt
-Data de Criação: 19 de setembro de 2023
-Descrição: Boot, para o SAJ
-"""
+from selenium.common.exceptions import NoSuchElementException
 
 
 # Configuração do ChromeOptions
@@ -35,25 +25,71 @@ opcao_chrome.add_argument("--disable--gpu") # necessario para rodar, o arquivo .
 class SajAdemir:  
     
     def __init__(self, chrome_opcao):  #Metodo Construtor
-        bemvindo_bb = '''
-            +===========================================================================+
-            |             BEM VINDO,  Ao Robô, SAJ Ademir                               |
-            |                                                                           |
-            |                                                                           |
-            |          Procuradoria Geral da Fazenda 3° Regiao                          |
-            |                                                                           |
-            |                                                                           |    
-            |                                                                           |
-            | Devs:  AdrianoAngioletto, Arthur Bittencourt                              |
-            +===========================================================================+
-            '''
-        print(bemvindo_bb)
                 
         self.chrome_opcao = chrome_opcao
         self.google = webdriver.Chrome(options=chrome_opcao) # recebe argumento, bebe!
         #   self.saj_pge = SjPge() FUTURA MENTE IR BUSCAR OS DADOS LÁ DO PGE!! JA DEIXEI AQUI NO JEITO AMOR!
     
                  
+    
+    def captura_infos(self):
+        
+        lista = list()
+        # Wait for up to 10 seconds
+        try:
+            
+            elemento1 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[1]/div").text
+            elemento2 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[2]/div").text
+            elemento3 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[3]/div").text
+            elemento4 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[4]/div").text
+            elemento5 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[5]/div").text
+                                                                
+            
+            lista.append(elemento1)
+            lista.append(elemento2)
+            lista.append(elemento3)
+            lista.append(elemento4)
+            lista.append(elemento5)
+
+        
+            # dict1 = {"Inscrição Previdênciaria": elemento1,
+            #         "Data da Inscrição": elemento2,
+            #         "Valor Atualizado": elemento3,
+            #         "Situação da Inscrição": elemento4,
+            #         "Periodo da Dívida": elemento5,
+            #     "Valor Atualizado": elemento6}
+
+        except: 
+            print(".........................É SIDA......................")
+
+            # else: 
+            elemento1 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[1]/div").text
+            elemento2 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[2]/div").text
+            elemento3 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[3]/div").text
+            elemento4 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[4]/div").text
+            elemento5 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[5]/div").text
+            elemento6 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[6]/div").text
+            elemento7 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[7]/div").text
+            elemento8 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[8]/div").text
+
+            lista.append(elemento1)
+            lista.append(elemento2)
+            lista.append(elemento3)
+            lista.append(elemento4)
+            lista.append(elemento5)
+            lista.append(elemento6)
+            lista.append(elemento7)
+            lista.append(elemento8)
+
+
+            
+            
+
+        # except:
+        #      elemento1 = self.google.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[1]/div").text
+
+        return lista
+            
 
     def InicioSAJ(self): # FUNÇÃO PAPAI 
         arquivo_excel = "processos.xlsx"     
@@ -85,8 +121,6 @@ class SajAdemir:
         botao_consulta.click() # CLICA NO ITEM >>> CONSULTA
         # TEMPO PARA RETONAR O PROCESSO.
 
-        
-
     def ConsultarProcessos(self):
         # Encontre todos os arquivos Excel que correspondem ao padrão
         ListaProcessos = glob.glob('processos*.xlsx')
@@ -111,57 +145,35 @@ class SajAdemir:
                     time.sleep(1)
                     botao_consulta.click()
                     time.sleep(1)
-
-                    wait = WebDriverWait(self.google, 2)  # Wait for up to 10 seconds
-
-                    elemento1 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[1]/div"))).text
-                    elemento2 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[2]/div"))).text
-                    elemento3 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[3]/div"))).text
-                    elemento4 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[4]/div"))).text
-                    elemento5 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[5]/div"))).text
-                    lista = list()
-                    lista.append(elemento1)
-                    lista.append(elemento2)
-                    lista.append(elemento3)
-                    lista.append(elemento4)
-                    lista.append(elemento5)
-
-                    print(lista)
-                
-                    data = {'numero processo:': elemento1
-                            }
-
-                    df = pd.Dataframe(data)
-                    df.to_excel('')
-
-                    # elemento = self.google.find_element(By.XPATH,"//tbody[@id = 'frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[8]/div")
-                    # print(elemento)
-                
-                    # Localize o elemento pelo ID
                     
-                                       
-                    # html_tabela = elemento.get_attribute("innerHTML")
+                
+                    try:
+                        lista = self.captura_infos()
+                    
+                    except NoSuchElementException:
+                        continue
 
-                    # # Escreva as informações do processo no arquivo HTML
-                    # arquivo_todos_processos.write(f'<h2>Processo Numero: {valor}</h2>\n')
-                    # arquivo_todos_processos.write(html_tabela)
-                    # arquivo_todos_processos.write('\n')  # Ad
-                    # botao_processo = self.google.find_element(By.CLASS_NAME, "ui-menuitem-text")  # PEGA  ID DA LISTA > PROCESSO
-                    # webdriver.ActionChains(self.google).move_to_element(botao_processo).perform() # MOVE MOUSE ATÉ A LISTA 
-                    # time.sleep(1) # TEMPO NECESSARIO
-                    # botao_consulta = self.google.find_element(By.ID, "j_idt15:formMenus:menuPerfilConsulta") # PEGA O ITEM DA LISTA >>> CONSULTA
-                    # time.sleep(1) 
-                    # botao_consulta.click() # CLICA NO ITEM >>> CONSULTA
-                    # time.sleep(1) 
+                        
 
+                    df = pandas.DataFrame(lista)
+                    
+                  
+                    botao_processo = self.google.find_element(By.CLASS_NAME, "ui-menuitem-text")  # PEGA  ID DA LISTA > PROCESSO
+                    webdriver.ActionChains(self.google).move_to_element(botao_processo).perform() # MOVE MOUSE ATÉ A LISTA 
+                    time.sleep(1) # TEMPO NECESSARIO
+                    botao_consulta = self.google.find_element(By.ID, "j_idt15:formMenus:menuPerfilConsulta") # PEGA O ITEM DA LISTA >>> CONSULTA
+                    time.sleep(1) 
+                    botao_consulta.click() # CLICA NO ITEM >>> CONSULTA
+                    time.sleep(1) 
 
+        df.to_excel("My_excel")
+        self.google.quit()
 
 # Pge = SjPge()  JA DEIXEI AQUI NO JEITO AMOR, PRA FUTURAMENTE BUSCAR OS DADOS LA NO PGE!!     
 Sj = SajAdemir(opcao_chrome)
 Sj.InicioSAJ() #  dá inicio a função
 Sj.SegundoPassoSaj() # chama a segunda e dai por diante.
 Sj.ConsultarProcessos()
-
 
 
      
