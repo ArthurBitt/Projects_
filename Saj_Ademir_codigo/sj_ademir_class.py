@@ -15,7 +15,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
-
+from selenium.common.exceptions import ElementClickInterceptedException
 
 # Configuração do ChromeOptions
 opcao_chrome = webdriver.ChromeOptions() # argumentos para metodo construtor
@@ -153,9 +153,12 @@ class SajAdemir:
                     except NoSuchElementException:
                         continue
 
+                    except ElementClickInterceptedException:
+                        continue
+
                         
 
-                    df = pandas.DataFrame(lista)
+                
                     
                   
                     botao_processo = self.google.find_element(By.CLASS_NAME, "ui-menuitem-text")  # PEGA  ID DA LISTA > PROCESSO
@@ -165,6 +168,8 @@ class SajAdemir:
                     time.sleep(1) 
                     botao_consulta.click() # CLICA NO ITEM >>> CONSULTA
                     time.sleep(1) 
+
+                df = pandas.DataFrame(lista)
 
         df.to_excel("My_excel")
         self.google.quit()
