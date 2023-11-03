@@ -122,57 +122,67 @@ class SajAdemir:
         # TEMPO PARA RETONAR O PROCESSO.
 
     def ConsultarProcessos(self):
+            
+            new_lista = []
         # Encontre todos os arquivos Excel que correspondem ao padrão
-        ListaProcessos = glob.glob('processos*.xlsx')
-        # Crie um arquivo HTML para salvar todos os processos
-        arquivo_html_todos_processos = "todos_processos.html"
-
-        with open(arquivo_html_todos_processos, "w", encoding="utf-8") as arquivo_todos_processos:
+            ListaProcessos = glob.glob('processos*.xlsx')
+            # Crie um arquivo HTML para salvar todos os processos
             for arquivo_excel in ListaProcessos:
                 # Leia o arquivo Excel e armazene-o em um DataFrame
                 dados_temporarios = pandas.read_excel(arquivo_excel)
 
-                for index, row in dados_temporarios.iterrows():
-                    valor = row.iloc[0]  # Supondo que o número do processo está na primeira coluna do DataFrame
-                    print(f'Robô Saj Ademir Acabou de ler e salvar o Processo Numero: {valor}')
+                try:
+                    for index, row in dados_temporarios.iterrows():
+                        valor = row.iloc[0]  # Supondo que o número do processo está na primeira coluna do DataFrame
+                        print(f'Robô Saj Ademir Acabou de ler e salvar o Processo Numero: {valor}')
 
-                    caixa_consulta = self.google.find_element(By.ID, "consultarProcessoForm:numeroProcesso")
-                    time.sleep(1)
-                    # Insira o número do processo
-                    caixa_consulta.send_keys(valor)
-                    # Execute a pesquisa clicando no botão "Consultar"
-                    botao_consulta = self.google.find_element(By.ID, "consultarProcessoForm:consultarProcessos")
-                    time.sleep(1)
-                    botao_consulta.click()
-                    time.sleep(1)
-                    
-                
-                    try:
+                        caixa_consulta = self.google.find_element(By.ID, "consultarProcessoForm:numeroProcesso")
+                        time.sleep(1)
+
+                        caixa_consulta.send_keys(valor)
+                        botao_consulta = self.google.find_element(By.ID, "consultarProcessoForm:consultarProcessos")
+                        time.sleep(1)
+
+                        botao_consulta.click()
+                        time.sleep(1)
+
                         lista = self.captura_infos()
-                    
-                    except NoSuchElementException:
-                        continue
-
-                    except ElementClickInterceptedException:
-                        continue
+                        print(lista)
 
                         
+                        new_lista.append(lista)
+
+                        botao_processo = self.google.find_element(By.CLASS_NAME, "ui-menuitem-text")  # PEGA  ID DA LISTA > PROCESSO
+                        webdriver.ActionChains(self.google).move_to_element(botao_processo).perform() # MOVE MOUSE ATÉ A LISTA 
+                        time.sleep(1) # TEMPO NECESSARIO
+
+                        botao_consulta = self.google.find_element(By.ID, "j_idt15:formMenus:menuPerfilConsulta") # PEGA O ITEM DA LISTA >>> CONSULTA
+                        time.sleep(1) 
+
+                        botao_consulta.click() # CLICA NO ITEM >>> CONSULTA
+                        time.sleep(1) 
+                
+                    return new_lista
+                
+                except NoSuchElementException:
+                    continue
+
+                except ElementClickInterceptedException:
+                    continue
+            
+            print(new_lista)
+            df = pandas.DataFrame(new_lista)
+            print(df)
+            arquivo_excel_todos_processos = "todos_processos.xlsx"
+            df.to_excel(arquivo_excel_todos_processos)
+            
+            
+                    
 
                 
-                    
-                  
-                    botao_processo = self.google.find_element(By.CLASS_NAME, "ui-menuitem-text")  # PEGA  ID DA LISTA > PROCESSO
-                    webdriver.ActionChains(self.google).move_to_element(botao_processo).perform() # MOVE MOUSE ATÉ A LISTA 
-                    time.sleep(1) # TEMPO NECESSARIO
-                    botao_consulta = self.google.find_element(By.ID, "j_idt15:formMenus:menuPerfilConsulta") # PEGA O ITEM DA LISTA >>> CONSULTA
-                    time.sleep(1) 
-                    botao_consulta.click() # CLICA NO ITEM >>> CONSULTA
-                    time.sleep(1) 
 
-                df = pandas.DataFrame(lista)
-
-        df.to_excel("My_excel")
-        self.google.quit()
+        # df.to_excel("My_excel")
+        # self.google.quit()
 
 # Pge = SjPge()  JA DEIXEI AQUI NO JEITO AMOR, PRA FUTURAMENTE BUSCAR OS DADOS LA NO PGE!!     
 Sj = SajAdemir(opcao_chrome)
