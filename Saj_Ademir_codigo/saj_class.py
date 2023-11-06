@@ -32,7 +32,7 @@ class mainSAJ:
         lista = list()
         
         time.sleep(1)
-        
+        #VERIFICAR /tbody durante o tempo de execução
         numero_processo = self.driver.find_element(By.XPATH,'//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
         elemento1 = self.driver.find_element(By.XPATH, f"//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[1]/div").text
         elemento2 = self.driver.find_element(By.XPATH, f"//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tr/td[2]/div").text
@@ -56,7 +56,7 @@ class mainSAJ:
         
         lista = list()
         time.sleep(1)
-
+        #VERIFICAR /tbody durante o tempo de execução
         numero_processo = self.driver.find_element(By.XPATH,'//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
         elemento1 = self.driver.find_element(By.XPATH, f"//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[1]/div").text
         elemento2 = self.driver.find_element(By.XPATH, f"//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tr/td[2]/div").text
