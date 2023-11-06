@@ -93,17 +93,17 @@ class mainSAJ:
             print(tr)
         return tr
 
-    def verifica_info(self,lista_exc_prev,lista_exc_fisc):
+    def verifica_info(self,new_lista_exc_prev,new_lista_exc_fisc):
 
         try:
             lista_exc_fisc =  self.captura_infos_exec_fiscal_SIDA()
-            lista_exc_fisc.append(lista_exc_fisc)
+            new_lista_exc_fisc.append(lista_exc_fisc)
             print("CLASSE: SIDA")
 
         except:
             
             lista_exc_prev = self.captura_infos_exec_previdenciaria()
-            lista_exc_prev.append(lista_exc_prev)  
+            new_lista_exc_prev.append(lista_exc_prev)  
             print("CLASSE: PREVIDENCIÁRIO")       
             
     def converteEmExcel(self, lista_exc_fisc,lista_exc_prev):
@@ -154,9 +154,9 @@ class mainSAJ:
         time.sleep(1)
 
     def consultarProcessosSAj(self):
-            lista_outros_processos = [['Número Processos']]
-            lista_exc_fisc = []
-            lista_exc_prev = []
+            new_lista_outros_processos = [['Número Processos']]
+            new_lista_exc_fisc = []
+            new_lista_exc_prev = []
         
             ListaProcessos = glob.glob(f'{self.path_leitura}*')
            
@@ -183,13 +183,13 @@ class mainSAJ:
                         
                         
                         try:                     
-                            self.verifica_info(lista_exc_fisc,lista_exc_prev)
+                            self.verifica_info(new_lista_exc_fisc,new_lista_exc_prev)
                             #Testando 
                             # tr = self.veririfica_qntd_linhas()
                         except:
                             print("CLASSE: OUTROS PROCESSOS")
                             
-                            lista_outros_processos.append([valor])
+                            new_lista_outros_processos.append([valor])
                             pass
 
                                 #Testando 
