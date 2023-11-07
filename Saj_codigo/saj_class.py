@@ -226,5 +226,28 @@ if __name__ == '__main__':
     app = mainSAJ(opcao_chrome)
     app.run()
 
+
+# # tbody = driver.find_element_by_id("frmDetalhar:j_idt104:inscricaoSidaTable_data")
+
+# # Encontre todos os trs dentro do tbody
+# trs = tbody.find_elements_by_tag_name("tr")
+
+# # Itere sobre os trs
+# for tr in trs:
+#     # Encontre todos os tds dentro de cada tr
+#     tds = tr.find_elements_by_tag_name("td")
+
+#     # Itere sobre os tds
+#     for td in tds:
+#         # Encontre todas as divs dentro de cada td
+#         divs = td.find_elements_by_tag_name("div")
+
+#         # Itere sobre as divs
+#         for div in divs:
+#             # Imprima o texto da div
+#             print(div.text)
+
+# # Feche o navegador
+# driver.quit() 
      
      
