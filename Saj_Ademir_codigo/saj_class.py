@@ -94,7 +94,6 @@ class mainSAJ:
         return tr
 
     def verifica_info(self,new_lista_exc_prev,new_lista_exc_fisc):
-
         try:
             lista_exc_fisc =  self.captura_infos_exec_fiscal_SIDA()
             new_lista_exc_fisc.append(lista_exc_fisc)
@@ -213,8 +212,8 @@ class mainSAJ:
                 except ElementClickInterceptedException:
                     continue
                     
-            self.converteEmExcel(lista_exc_fisc,lista_exc_prev)
-            self.converteEmExcelOutrosProcessos(lista_outros_processos)
+            self.converteEmExcel(new_lista_exc_fisc,new_lista_exc_prev)
+            self.converteEmExcelOutrosProcessos(new_lista_outros_processos)
             
     def run(self):
         self.loginSAJ() 
