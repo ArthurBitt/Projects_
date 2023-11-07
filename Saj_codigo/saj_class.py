@@ -12,9 +12,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementClickInterceptedException
 
 # Configuração do ChromeOptions
-opcao_chrome = webdriver.ChromeOptions() # argumentos para metodo construtor
-opcao_chrome.add_argument("--start-maximized")  # argumeto 2 para metodo construtor
-opcao_chrome.add_argument("--disable--gpu") # necessario para rodar, o arquivo .exe se não so funcionara Visual, code bebe
+opcao_chrome = webdriver.ChromeOptions() 
+opcao_chrome.add_argument("--start-maximized")  
 
 class mainSAJ:  
 
@@ -94,7 +93,6 @@ class mainSAJ:
         return tr
 
     def verifica_info(self,new_lista_exc_prev,new_lista_exc_fisc):
-
         try:
             lista_exc_fisc =  self.captura_infos_exec_fiscal_SIDA()
             new_lista_exc_fisc.append(lista_exc_fisc)
@@ -182,7 +180,8 @@ class mainSAJ:
                         time.sleep(1)
                         
                         
-                        try:                     
+                        try:     
+                            time.sleep(10000)                
                             self.verifica_info(new_lista_exc_fisc,new_lista_exc_prev)
                             #Testando 
                             # tr = self.veririfica_qntd_linhas()
@@ -213,8 +212,8 @@ class mainSAJ:
                 except ElementClickInterceptedException:
                     continue
                     
-            self.converteEmExcel(lista_exc_fisc,lista_exc_prev)
-            self.converteEmExcelOutrosProcessos(lista_outros_processos)
+            self.converteEmExcel(new_lista_exc_fisc,new_lista_exc_prev)
+            self.converteEmExcelOutrosProcessos(new_lista_outros_processos)
             
     def run(self):
         self.loginSAJ() 
