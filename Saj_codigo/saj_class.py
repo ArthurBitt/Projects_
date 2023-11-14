@@ -18,13 +18,17 @@ opcao_chrome.add_argument("--start-maximized")  # argumeto 2 para metodo constru
 opcao_chrome.add_argument("--disable--gpu") # necessario para rodar, o arquivo .exe se não so funcionara Visual, code bebe
 
 class mainSAJ:  
-
+    # variáveis paths
     nome_excel_leitura = 'processos.xlsx'
-    path_leitura = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_Ademir_codigo\\Excel_leitura\\"
-    path_resultados = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_Ademir_codigo\\Excel_resultados\\"
+    path_leitura = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_codigo\\Excel_leitura\\"
+    path_resultados = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_codigo\\Excel_resultados\\"
     arquivo_csvs_outros_processos = f'{path_resultados}todos_processos_outros.csv'
     arquivo_csv_todos_processos_fisc = f'{path_resultados}todos_processos_SIDA.csv'
     arquivo_csv_todos_processos_prev = f'{path_resultados}todos_processos_prev.csv'
+    #leitura dos numeros de processos do excel path leitura
+    ListaProcessos = glob.glob(f'{path_leitura}*')
+    
+    
     
     def __init__(self, chrome_opcao):  #Metodo Construtor
                 
@@ -36,41 +40,47 @@ class mainSAJ:
 
         tbody = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']/tbody").text
         trs = tbody.find_element(By.TAG_NAME, 'tr')
+        for i in trs:
+            print(i.text)
+        # print("CLASSE: PREVIDENCIÁRIO")
 
-        for row in trs:
-            new_row = []
-            new_row.append(row.text)
-            new_row = np.array(new_row)
-            new_row = new_row.T
-
-        return new_row
+        # for row in trs:
+        #     new_row = []
+        #     new_row.append(row.text)
+        #     new_row = np.array(new_row)            
+        #     new_row = new_row.T
+            
+        # return new_row
                     
     def captura_infos_exec_fiscal_SIDA(self): 
         
        
         tbody = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']/tbody").text
         trs = tbody.find_element(By.TAG_NAME, 'tr')
+        for i in trs:
+            print(i.text)
+        # print("CLASSE: SIDA")
 
-        for row in trs:
-            new_row = []
-            new_row.append(row.text)
-            new_row = np.array(new_row)
-            new_row = new_row.T
+        # for row in trs:
+        #     new_row = []
+        #     new_row.append(row.text)
+        #     new_row = np.array(new_row)
+        #     new_row = new_row.T
 
-        return new_row
+        # return new_row
         
-    def verifica_info(self):
-        new_lista_exc_fisc = list()
-        new_lista_exc_prev = list()
-        
+    def verifica_info(self,new_lista_exc_fisc, new_lista_exc_prev):
+
         try:
-            new_lista_exc_fisc.append(self.captura_infos_exec_fiscal_SIDA())
+            infos = self.captura_infos_exec_fiscal_SIDA()
+            new_lista_exc_fisc.append(infos)
             print("CLASSE: SIDA")
-
+            print(new_lista_exc_fisc)
         except:
-            
-            new_lista_exc_prev.append(self.captura_infos_exec_previdenciaria())  
-            print("CLASSE: PREVIDENCIÁRIO")       
+            infos = self.captura_infos_exec_previdenciaria()
+            new_lista_exc_prev.append(infos)  
+            print("CLASSE: PREVIDENCIÁRIO")  
+            print(new_lista_exc_prev)     
             
 
         return new_lista_exc_fisc, new_lista_exc_prev
@@ -88,8 +98,8 @@ class mainSAJ:
         df3.to_csv(self.arquivo_excel_outros_processos)
                 
     def Auto_login(self): 
+        #bloco de autoação para logar
         arquivo_excel = f'{self.path_leitura}{self.nome_excel_leitura}'
-        
         if not os.path.isfile(arquivo_excel):
             print("PROCESSOS NÃO ENCONTRADOS, POR FAVOR COLOQUE OS PROCESSOS NA PASTA")
             
@@ -107,7 +117,7 @@ class mainSAJ:
             time.sleep(1)
               
     def Auto_acessaMenuConsulta(self): 
-
+        # bloco de automação da consulta no menu consulta
         time.sleep(1)
         botao_processo = self.driver.find_element(By.CLASS_NAME, "ui-menuitem-text")  
         webdriver.ActionChains(self.driver).move_to_element(botao_processo).perform() # MOVE MOUSE ATÉ A LISTA 
@@ -120,59 +130,60 @@ class mainSAJ:
         botao_pesquisar.click() 
         time.sleep(1)
 
-    def Auto_consultarUmProcesso(self):
-        ListaProcessos = glob.glob(f'{self.path_leitura}*')
-        for numeros_de_processos in ListaProcessos:
-            df = pd.read_excel(numeros_de_processos)
-            for i, row in df.iterrows():
-                        valor = row # Supondo que o número do processo está na primeira coluna do DataFrame
-                        print(f'Processo: {row}')
-
-                        caixa_consulta = self.driver.find_element(By.ID, "consultarProcessoForm:numeroProcesso")
-                        time.sleep(1)
-                        
-                        caixa_consulta.send_keys(valor)
-                        time.sleep(1)
-                        
-                        botao_pesquisar = self.driver.find_element(By.ID, "consultarProcessoForm:consultarProcessos")
-                        time.sleep(1)
-
-                        botao_pesquisar.click()
-                        time.sleep(1)
-        return valor
-    
-    def consultarProcessosSAj(self):
+    def Auto_consultarUmProcesso(self, valor):
         new_lista_outros_processos = [['Número Processos']]
-                       
-        try:
-            valor = self.Auto_consultarUmProcesso()               
-               
-            try:                     
-                infos = self.verifica_info()
-                
-            except:
-                print("CLASSE: OUTROS PROCESSOS")
-                
-                new_lista_outros_processos.append([valor])
-                pass
-                       
-            self.Auto_acessaMenuConsulta()
+        new_lista_exc_fisc = list()
+        new_lista_exc_prev = list()
+        
+        #Bloco de Automação da consulta  com número do processos
+        caixa_consulta = self.driver.find_element(By.ID, "consultarProcessoForm:numeroProcesso")
+        time.sleep(1)
+        
+        caixa_consulta.send_keys(valor)
+        time.sleep(1)
+        
+        botao_pesquisar = self.driver.find_element(By.ID, "consultarProcessoForm:consultarProcessos")
+        time.sleep(1)
 
-        except NoSuchElementException:
-            pass
+        botao_pesquisar.click()
+        time.sleep(7)
 
-        except ElementClickInterceptedException:
-            pass
+        # try:
+        #     self.captura_infos_exec_fiscal_SIDA()
+        #     # self.verifica_info(new_lista_exc_fisc, new_lista_exc_prev)
             
-        print(infos)
-            # self.converteEmCSV(new_lista_exc_fisc,new_lista_exc_prev)
-            # self.converteEmCSVOutrosProcessos(new_lista_outros_processos)
+        # except:
+        #     self.captura_infos_exec_previdenciaria()
+        #     #     # new_lista_outros_processos.append([valor])
+        #     #     # print(f'Processo Numero: {valor} foi salvo')
+
+    def consultarProcessos(self):
+        
+
+        for numeros_de_processos in self.ListaProcessos:
+            
+            df = pd.read_excel(numeros_de_processos)
+
+            try:
+                #loop para iterarar dentro do excel os numero de processo
+                for i, row in df.iterrows():
+                    valor = row # Supondo que o número do processo está na primeira coluna do DataFrame
+                    self.Auto_consultarUmProcesso(valor)
+                    self.Auto_acessaMenuConsulta() 
+                
+            except NoSuchElementException:
+                pass
+
+            except ElementClickInterceptedException:
+                pass
+
+             
             
     def run(self):
         self.Auto_login() 
         self.Auto_acessaMenuConsulta() 
-        self.consultarProcessosSAj()
-        # self.driver.quit()
+        self.consultarProcessos()
+        self.driver.quit()
 
 
 if __name__ == '__main__':
