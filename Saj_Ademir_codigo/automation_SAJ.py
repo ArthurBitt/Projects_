@@ -18,11 +18,6 @@ opcao_chrome = webdriver.ChromeOptions() # argumentos para metodo construtor
 opcao_chrome.add_argument("--start-maximized")  # argumeto 2 para metodo construtor
 opcao_chrome.add_argument("--disable--gpu") # necessario para rodar, o arquivo .exe se não so funcionara Visual, code bebe
 
-class PrevidenciariaException(Exception):
-    def __init__(self, message="Erro na execução previdenciária"):
-        self.message = message
-        super().__init__(self.message)
-
 class mainSAJ:  
     
     nome_excel_leitura = 'processos.xlsx'
@@ -33,7 +28,23 @@ class mainSAJ:
                 
         self.chrome_opcao = chrome_opcao
         self.driver = webdriver.Chrome(options=chrome_opcao)
-         
+
+
+
+    def converteEmExcel(self, lista_exc_fisc,lista_exc_prev):
+    df1 = pd.DataFrame(lista_exc_fisc )
+    df2 = pd.DataFrame(lista_exc_prev)
+    arquivo_excel_todos_processos_fisc = f'{self.path_resultados}todos_processos_SIDA.xlsx'
+    arquivo_excel_todos_processos_prev = f'{self.path_resultados}todos_processos_prev.xlsx'
+    df1.to_excel(arquivo_excel_todos_processos_fisc)
+    df2.to_excel(arquivo_excel_todos_processos_prev)
+
+    def converteEmExcelOutrosProcessos(self, lista_outros_processos):
+        
+        df3 = pd.DataFrame(lista_outros_processos)
+        arquivo_excel_outros_processos = f'{self.path_resultados}todos_processos_outros.xlsx'
+        df3.to_excel(arquivo_excel_outros_processos)
+
     #Lógica ok   - não mexer
     def captura_infos_exec_previdenciaria(self):
         
@@ -41,7 +52,7 @@ class mainSAJ:
         
         tbody = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']")
         trs = tbody.find_elements(By.TAG_NAME, 'tr')
-
+        
         for row in trs:
 
             new_row = []
@@ -49,11 +60,11 @@ class mainSAJ:
             new_row = np.array(new_row)
             new_row = new_row.T
         
-        new_lista.append(new_row)
+        # new_lista.append(new_row)
 
         # np.savetxt('table.csv', new_lista, delimiter=';', fmt='%s')
             
-        return new_lista
+        return new_row
 
     #Lógica Ok           
     def captura_infos_exec_fiscal_SIDA(self): 
@@ -62,7 +73,7 @@ class mainSAJ:
         tbody = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']")
     # print(tbody.text)
         trs = tbody.find_elements(By.TAG_NAME, 'tr')
-    
+        
         for row in trs:
             new_row = []    
             new_row.append(row.text.replace("\n", ""))
@@ -70,37 +81,40 @@ class mainSAJ:
             new_row = np.array(new_row)            
             new_row = new_row.T
             
-            new_lista.append(new_row)
+            # new_lista.append(new_row)
             
-        return new_lista
+        return new_row
             # #desse jeito ele sobreescreve
             # np.savetxt('table.csv', new_lista, delimiter=';', fmt='%s')
 
-    #Lógica testando
-    def verifica_info(self):
+    def especializa_info(self,new_lista_exc_prev, new_lista_exc_sida, outros_processos, valor):
         
         try:
-            info_sida =  self.captura_infos_exec_fiscal_SIDA()
-            print("CLASSE: SIDA")
-
+            prev = self.captura_infos_exec_previdenciaria()
+            new_lista_exc_prev.append(prev)
+            print(f"CLASSE: PREVIDENCIÁRIO - {valor}")   
+            print(new_lista_exc_prev)
+            
         except:
-            info_prev = self.captura_infos_exec_previdenciaria()
-            print("CLASSE: PREVIDENCIÁRIO")       
-                
-    # def converteEmExcel(self, lista_exc_fisc,lista_exc_prev):
-    #     df1 = pd.DataFrame(lista_exc_fisc )
-    #     df2 = pd.DataFrame(lista_exc_prev)
-    #     arquivo_excel_todos_processos_fisc = f'{self.path_resultados}todos_processos_SIDA.xlsx'
-    #     arquivo_excel_todos_processos_prev = f'{self.path_resultados}todos_processos_prev.xlsx'
-    #     df1.to_excel(arquivo_excel_todos_processos_fisc)
-    #     df2.to_excel(arquivo_excel_todos_processos_prev)
-
-    # def converteEmExcelOutrosProcessos(self, lista_outros_processos):
+            pass
         
-    #     df3 = pd.DataFrame(lista_outros_processos)
-    #     arquivo_excel_outros_processos = f'{self.path_resultados}todos_processos_outros.xlsx'
-    #     df3.to_excel(arquivo_excel_outros_processos)
+        try:
+            sida = self.captura_infos_exec_fiscal_SIDA()
+            new_lista_exc_sida.append(sida)
+            print(f"CLASSE: SIDA - {valor}")
+            print(new_lista_exc_sida)
+            
+        except:
+            pass
 
+        try:
+            outros_processos.add(valor)
+            print(f"OUTROS PROCESSOS - {valor}")
+            print(outros_processos)
+           
+        except:
+            pass     
+                            
     # Lógica ok - - não mexer            
     def loginSAJ(self): 
         arquivo_excel = F'{self.path_leitura}{self.nome_excel_leitura}'
@@ -121,9 +135,21 @@ class mainSAJ:
             botao_ok.click()
             time.sleep(1)
 
+    def auto_consulta_processo(self, valor):
+        caixa_consulta = self.driver.find_element(By.ID, "consultarProcessoForm:numeroProcesso")
+        time.sleep(1)
+        
+        caixa_consulta.send_keys(valor)
+        time.sleep(1)
+        
+        botao_pesquisar = self.driver.find_element(By.ID, "consultarProcessoForm:consultarProcessos")
+        time.sleep(1)
+
+        botao_pesquisar.click()
+        time.sleep(10)
+
     # Lógica ok - - não mexer          
     def acessaMenuConsultaSAJ(self): 
-
         time.sleep(1)
         botao_processo = self.driver.find_element(By.CLASS_NAME, "ui-menuitem-text")  
         webdriver.ActionChains(self.driver).move_to_element(botao_processo).perform() # MOVE MOUSE ATÉ A LISTA 
@@ -137,9 +163,9 @@ class mainSAJ:
         time.sleep(1)
 
     def consultarProcessosSAj(self):
-            new_lista_outros_processos = [['Número Processos']]
-            new_lista_exc_sida = []
-            new_lista_exc_prev = []
+            outros_processos = set()
+            new_lista_exc_sida = list()
+            new_lista_exc_prev = list()
         
             ListaProcessos = glob.glob(f'{self.path_leitura}*')
            
@@ -150,45 +176,8 @@ class mainSAJ:
                 try:
                     for i, row in df.iterrows():
                         valor = row.iloc[0]  # Supondo que o número do processo está na primeira coluna do DataFrame
-                        print(f'Processo Numero: {valor}')
-
-                        caixa_consulta = self.driver.find_element(By.ID, "consultarProcessoForm:numeroProcesso")
-                        time.sleep(1)
-                        
-                        caixa_consulta.send_keys(valor)
-                        time.sleep(1)
-                        
-                        botao_pesquisar = self.driver.find_element(By.ID, "consultarProcessoForm:consultarProcessos")
-                        time.sleep(1)
-
-                        botao_pesquisar.click()
-                        time.sleep(10)
-
-#Tentando trabalhar em uma exceção para separar as classes e pegar direto a nova row na 
-# captura info para passar em uma lista e concerter em csv aqui
-
-                        try:
-                            self.captura_infos_exec_previdenciaria()
-                        
-                        except PrevidenciariaException as e:
-                            # Lida com a exceção específica capturada em captura_infos_exec_previdenciaria
-                            print(f"Capturou exceção de previdenciária: {e}")
-                            print("PREV")
-                        
-                        except Exception:
-                            # Se ocorrer outra exceção, executa o bloco de código a seguir
-                            try:
-                                self.captura_infos_exec_fiscal_SIDA()
-                                print("SIDA")
-                            except Exception:
-                                # Captura qualquer outra exceção não especificada anteriormente
-                                new_lista_outros_processos.append([valor])
-                                print("OUTROS PROCESSOS")
-                        
-                            
-
-
-                        
+                        self.auto_consulta_processo(valor)
+                        self.especializa_info(new_lista_exc_prev,new_lista_exc_sida,outros_processos,valor)
                         self.acessaMenuConsultaSAJ()
 
                 except NoSuchElementException:
@@ -197,22 +186,23 @@ class mainSAJ:
                 except ElementClickInterceptedException:
                     continue
 
-            # print(new_lista_exc_prev)
-            # print(new_lista_exc_sida)
-            # np.savetxt('table.csv', new_list, delimiter=';', fmt='%s')
-            # self.converteEmExcel(new_lista_exc_sida,new_lista_exc_prev)
-            # self.converteEmExcelOutrosProcessos(new_lista_outros_processos)
+
+            print('Finalizando...')
+            time.sleep(15)
+            
             
     def run(self):
         self.loginSAJ() 
         self.acessaMenuConsultaSAJ() 
         self.consultarProcessosSAj()
-        # self.driver.quit()
+        self.driver.quit()
 
 
 if __name__ == '__main__':
     app = mainSAJ(opcao_chrome)
     app.run()
+    
+
 
      
      
