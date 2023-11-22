@@ -19,7 +19,8 @@ opcao_chrome.add_argument("--start-maximized")
 opcao_chrome.add_argument('--disable-gpu') 
 
 class mainSAJ:  
-    
+
+    #PATHS
     nome_excel_leitura = 'processos.xlsx'
     path_leitura = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_Automation\\Excel_leitura\\"
     path_resultados = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_Automation\\Excel_resultados\\"
@@ -32,21 +33,10 @@ class mainSAJ:
                 
         self.chrome_opcao = chrome_opcao
         self.driver = webdriver.Chrome(options=chrome_opcao)
-        
 
-    def converteEmExcel(self, new_lista_exc_sida,new_lista_exc_prev, outros_processos):
-        df1 = pd.DataFrame(new_lista_exc_sida)
-        df2 = pd.DataFrame(new_lista_exc_prev)
-        df3 = pd.DataFrame(outros_processos)
-        df1.to_csv(self.arquivo_csv_todos_processos_sida)
-        df2.to_csv(self.arquivo_csv_todos_processos_prev)
-        df3.to_csv(self.arquivo_csv_outros_processos)
-    #Lógica ok   - não mexer
-    def captura_infos_exec_previdenciaria(self):
-
+    def processo_loop_tag_tr(self, tbody):
+        # processo de loop -  transformação e armazenamento temporário dos dados capturados
         lista_loop = list()
-        
-        tbody = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']")
         trs = tbody.find_elements(By.TAG_NAME, 'tr')
         num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
 
@@ -57,103 +47,50 @@ class mainSAJ:
             new_row = np.array(new_row)            
             new_row = new_row.T            
             lista_loop.append(new_row)
-
-        lista_loop = lista_loop   
         print(lista_loop)
-            
-        return lista_loop
-    #Lógica Ok           
-    def captura_infos_exec_fiscal_SIDA(self): 
-
-        lista_loop = list()
-        
-        tbody = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']")
-        trs = tbody.find_elements(By.TAG_NAME, 'tr')
-        num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
-
-        for row in trs:
-            new_row = []    
-            new_row.append(row.text.replace("\n", ";"))
-            new_row.insert(0, num_processo.replace(' ',';'))
-            new_row = np.array(new_row)            
-            new_row = new_row.T            
-            lista_loop.append(new_row)
-
-        lista_loop = lista_loop   
-        print(lista_loop)
-            
         return lista_loop
 
-    def captura_infos_FGTS(self):
+    def processo_verifica(self):
+         # processo_verifica o tipo de processo que esta sendo consultado e o escreve no excel pertinente
+                            
+        # classe_judicial = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[2]/td[2]').text                        
+        exceptions_count = 0  
 
-        lista_loop = list()
-        
-        tbody = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoFgtsTable_data']")
-        trs = tbody.find_elements(By.TAG_NAME, 'tr')
-        num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
-
-        for row in trs:
-            new_row = []    
-            new_row.append(row.text.replace("\n", ";"))
-            new_row.insert(0, num_processo.replace(' ',';'))
-            new_row = np.array(new_row)            
-            new_row = new_row.T            
-            lista_loop.append(new_row)
-
-        lista_loop = lista_loop   
-        print(lista_loop)
-            
-        return lista_loop
-
-    def especializa_infos(self,valor):
-        outros_processos = set()
-        
         try:
-            prev = self.captura_infos_exec_previdenciaria()
+            tbody_prev = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']")
+            print(f" prev ")
             csv_filename = self.arquivo_csv_todos_processos_prev
-            with open(csv_filename, 'w', newline='') as csvfile:
-                csv_writer = csv.writer(csvfile)
-                for linha in prev:
-                    csv_writer.writerow(linha)          
-            print(f"CLASSE: PREVIDENCIÁRIO - {valor}")               
-
-        except:
-            
-            try:
-                sida = self.captura_infos_exec_fiscal_SIDA()
-                csv_filename = self.arquivo_csv_todos_processos_sida
-                with open(csv_filename, 'w', newline='') as csvfile:
-                    csv_writer = csv.writer(csvfile)
-                    for linha in sida:
-                        csv_writer.writerow(linha)
-                print(f"CLASSE: SIDA - {valor}")
-
-            except:
-                
-                try:
-                    fgts = self.captura_infos_FGTS()
-                    csv_filename = self.arquivo_csv_todos_processos_fgts
-                    with open(csv_filename, 'w', newline='') as csvfile:
-                        csv_writer = csv.writer(csvfile)
-                        for linha in fgts:
-                            csv_writer.writerow(linha)
-                    print(f"CLASSE: FGTS - {valor}")
-
-                except:
-                    outros_processos.add(valor)
-                    fgts = self.captura_infos_FGTS()
-                    csv_filename = self.arquivo_csv_outros_processos
-                    with open(csv_filename, 'w', newline='') as csvfile:
-                        csv_writer = csv.writer(csvfile)
-                        for linha in outros_processos:
-                            csv_writer.writerow(linha)
-                    print(f"OUTROS PROCESSOS - {valor}")  
-
+            lista_loop = self.processo_loop_tag_tr(tbody_prev)
+            self.processos_escreve_csv(csv_filename, lista_loop)
         
+        except NoSuchElementException:
+            exceptions_count += 1 
 
-    # Lógica ok - - não mexer            
-    def loginSAJ(self): 
+        try:
+            tbody_sida = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']")
+            print(f" sida ")
+            # csv_filename = self.arquivo_csv_todos_processos_sida
+            # lista_loop = self.processo_loop_tag_tr(tbody_sida)
+        except NoSuchElementException: 
+            exceptions_count += 1  
 
+        try:
+            tbody_fgts = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoFgtsTable_data']")
+            print(f" fgts ")
+            # csv_filename = self.arquivo_csv_todos_processos_fgts
+            # lista_loop = self.processo_loop_tag_tr(tbody_fgts)
+
+        except NoSuchElementException:
+            exceptions_count += 1  
+
+        if exceptions_count == 3:
+            self.processo_especializa_outros_processos()
+            print(f" ")
+            # csv_filename = self.arquivo_csv_outros_processos
+            # self.processos_escreve_csv(csv_filename)
+               
+    def auto_login(self): 
+        # automatiza a autenticação do usuário
         arquivo_csv = f'{self.path_leitura}{self.nome_excel_leitura}'
         
         if not os.path.isfile(arquivo_csv):
@@ -166,13 +103,15 @@ class mainSAJ:
             campo_login = self.driver.find_element(By.ID, "frmLogin:username")
             campo_senha = self.driver.find_element(By.ID, "frmLogin:password")
             campo_login.send_keys("49437584877")
-            campo_senha.send_keys("banana123")
+            campo_senha.send_keys("melancia123")
+            time.sleep(1)
             botao_ok = self.driver.find_element(By.ID, "frmLogin:entrar")
             time.sleep(1) 
             botao_ok.click()
             time.sleep(1)
 
     def auto_consulta_processo(self, valor):
+        # automatiza o envio do numero de processo e o click de consulta desse numero
         caixa_consulta = self.driver.find_element(By.ID, "consultarProcessoForm:numeroProcesso")
         time.sleep(1)
         
@@ -184,8 +123,9 @@ class mainSAJ:
 
         botao_pesquisar.click()
         time.sleep(10)
-    # Lógica ok - - não mexer          
-    def acessaMenuConsultaSAJ(self): 
+              
+    def auto_acessa_menu_consulta(self): 
+        # automatiza o acesso do menu saj para consulta de processos
         time.sleep(1)
         botao_processo = self.driver.find_element(By.CLASS_NAME, "ui-menuitem-text")  
         webdriver.ActionChains(self.driver).move_to_element(botao_processo).perform() # MOVE MOUSE ATÉ A LISTA 
@@ -198,9 +138,25 @@ class mainSAJ:
         botao_pesquisar.click() 
         time.sleep(1)
 
-    def consultarProcessosSAj(self):
-            
-            
+    def processos_escreve_csv(self, csv_filename, data, mode='a'):
+        with open(csv_filename, mode, newline='\n') as csvfile:
+                    csv_writer = csv.writer(csvfile)
+                    for linha in data:
+                        csv_writer.writerow(linha)
+
+    def processo_especializa_outros_processos(self):
+        print(f'OUTROS PROCESSOS')
+          
+    def auto_processa_excel_leitura(self, df):
+        # automatiza o conusmo dos numeros de processo no arquivo excel de leitura
+        for i, row in df.iterrows():
+                    valor = row.iloc[0]  
+                    self.auto_consulta_processo(valor)                    
+                    self.processo_verifica()
+                    self.auto_acessa_menu_consulta()
+
+    def processo_consultar_processos(self):
+
         ListaProcessos = glob.glob(f'{self.path_leitura}*')
         
         for numeros_de_processos in ListaProcessos:
@@ -208,25 +164,20 @@ class mainSAJ:
             df = pd.read_excel(numeros_de_processos)
             
             try:
-                for i, row in df.iterrows():
-                    valor = row.iloc[0]  # Supondo que o número do processo está na primeira coluna do DataFrame
-                    self.auto_consulta_processo(valor)
-                    self.especializa_infos(valor)
-                    self.acessaMenuConsultaSAJ()
-            except NoSuchElementException:
-                continue
-
-            except ElementClickInterceptedException:
-                continue
+                 self.auto_processa_excel_leitura(df)
+                
+            except (NoSuchElementException, ElementClickInterceptedException):
+                 continue
+    
 
 
         print('Finalizando...')
         time.sleep(4)
                        
     def run(self):
-        self.loginSAJ() 
-        self.acessaMenuConsultaSAJ() 
-        self.consultarProcessosSAj()
+        self.auto_login() 
+        self.auto_acessa_menu_consulta()
+        self.processo_consultar_processos()
         self.driver.quit()
 
 
