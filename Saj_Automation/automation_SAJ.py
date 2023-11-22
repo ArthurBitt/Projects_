@@ -88,10 +88,8 @@ class mainSAJ:
             exceptions_count += 1  
 
         if exceptions_count == 3:
-           outros  = self.processo_epecializa_outros_processos()
-           csv_filename = self.arquivo_csv_outros_processos
-           self.processos_escreve_csv(csv_filename, outros)
-                      
+           self.processo_epecializa_outros_processos()
+                                
     def processo_exibe_info_prompt(self, classe_judicial,num_processo):
         print(f'Classe: {classe_judicial} - {num_processo}')        
                     
@@ -161,17 +159,23 @@ class mainSAJ:
     def processo_epecializa_outros_processos(self):
         try:
             num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:2:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
+            print(f'Classe: outros processos - {num_processo}')
+            lista_outros_processos = list()
+            lista_outros_processos.append([num_processo])
+            csv_filename = self.arquivo_csv_outros_processos
+            self.processos_escreve_csv(csv_filename, lista_outros_processos)
         except NoSuchElementException:
             pass
         try:
             num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
+            print(f'Classe: outros processos - {num_processo}')
+            lista_outros_processos = list()
+            lista_outros_processos.append(num_processo)
+            csv_filename = self.arquivo_csv_outros_processos
+            self.processos_escreve_csv(csv_filename, lista_outros_processos)
         except NoSuchElementException:
              pass
         
-        print(f'Classe: outros processos - {num_processo}')
-        lista_outros_processos = list()
-        lista_outros_processos.append(num_processo)
-        return lista_outros_processos
         # csv_filename = self.arquivo_csv_outros_processos
         # self.processos_escreve_csv(csv_filename,lista_outros_processos)
 
