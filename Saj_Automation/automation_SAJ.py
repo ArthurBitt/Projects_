@@ -36,29 +36,32 @@ class mainSAJ:
 
     def processo_loop_tag_tr(self, tbody):
         # processo de loop -  transformação e armazenamento temporário dos dados capturados
+
         lista_loop = list()
+        
         trs = tbody.find_elements(By.TAG_NAME, 'tr')
         num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
+        classe_judicial = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[2]/td[2]').text
+        self.processo_exibe_info_prompt(classe_judicial,num_processo)
 
         for row in trs:
             new_row = []    
             new_row.append(row.text.replace("\n", ";"))
-            new_row.insert(0, num_processo.replace(' ',';'))
+            new_row.insert(0, num_processo.replace(',"',';'))
             new_row = np.array(new_row)            
             new_row = new_row.T            
             lista_loop.append(new_row)
-        print(lista_loop)
+
+        
         return lista_loop
 
-    def processo_verifica(self):
-         # processo_verifica o tipo de processo que esta sendo consultado e o escreve no excel pertinente
-                            
-        # classe_judicial = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[2]/td[2]').text                        
+    def processo_verifica_tipo_processo(self):
+        # processo_verifica_tipo_processo o tipo de processo que esta sendo consultado e o escreve no excel pertinente
+      
         exceptions_count = 0  
 
         try:
             tbody_prev = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoInssTable_data']")
-            print(f" prev ")
             csv_filename = self.arquivo_csv_todos_processos_prev
             lista_loop = self.processo_loop_tag_tr(tbody_prev)
             self.processos_escreve_csv(csv_filename, lista_loop)
@@ -68,27 +71,30 @@ class mainSAJ:
 
         try:
             tbody_sida = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoSidaTable_data']")
-            print(f" sida ")
-            # csv_filename = self.arquivo_csv_todos_processos_sida
-            # lista_loop = self.processo_loop_tag_tr(tbody_sida)
+            csv_filename = self.arquivo_csv_todos_processos_sida
+            lista_loop = self.processo_loop_tag_tr(tbody_sida)
+            self.processos_escreve_csv(csv_filename, lista_loop)
+
         except NoSuchElementException: 
             exceptions_count += 1  
 
         try:
             tbody_fgts = self.driver.find_element(By.XPATH, "//*[@id='frmDetalhar:j_idt104:inscricaoFgtsTable_data']")
-            print(f" fgts ")
-            # csv_filename = self.arquivo_csv_todos_processos_fgts
-            # lista_loop = self.processo_loop_tag_tr(tbody_fgts)
+            csv_filename = self.arquivo_csv_todos_processos_fgts
+            lista_loop = self.processo_loop_tag_tr(tbody_fgts)
+            self.processos_escreve_csv(csv_filename, lista_loop)
 
         except NoSuchElementException:
             exceptions_count += 1  
 
         if exceptions_count == 3:
-            self.processo_especializa_outros_processos()
-            print(f" ")
-            # csv_filename = self.arquivo_csv_outros_processos
-            # self.processos_escreve_csv(csv_filename)
-               
+           outros  = self.processo_epecializa_outros_processos()
+           csv_filename = self.arquivo_csv_outros_processos
+           self.processos_escreve_csv(csv_filename, outros)
+                      
+    def processo_exibe_info_prompt(self, classe_judicial,num_processo):
+        print(f'Classe: {classe_judicial} - {num_processo}')        
+                    
     def auto_login(self): 
         # automatiza a autenticação do usuário
         arquivo_csv = f'{self.path_leitura}{self.nome_excel_leitura}'
@@ -144,16 +150,30 @@ class mainSAJ:
                     for linha in data:
                         csv_writer.writerow(linha)
 
-    def processo_especializa_outros_processos(self):
-        print(f'OUTROS PROCESSOS')
-          
     def auto_processa_excel_leitura(self, df):
         # automatiza o conusmo dos numeros de processo no arquivo excel de leitura
         for i, row in df.iterrows():
                     valor = row.iloc[0]  
                     self.auto_consulta_processo(valor)                    
-                    self.processo_verifica()
+                    self.processo_verifica_tipo_processo()
                     self.auto_acessa_menu_consulta()
+
+    def processo_epecializa_outros_processos(self):
+        try:
+            num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:2:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
+        except NoSuchElementException:
+            pass
+        try:
+            num_processo = self.driver.find_element(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]').text
+        except NoSuchElementException:
+             pass
+        
+        print(f'Classe: outros processos - {num_processo}')
+        lista_outros_processos = list()
+        lista_outros_processos.append(num_processo)
+        return lista_outros_processos
+        # csv_filename = self.arquivo_csv_outros_processos
+        # self.processos_escreve_csv(csv_filename,lista_outros_processos)
 
     def processo_consultar_processos(self):
 
