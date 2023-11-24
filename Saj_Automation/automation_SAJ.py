@@ -22,11 +22,17 @@ opcao_chrome = webdriver.ChromeOptions()
 opcao_chrome.add_argument("--start-maximized")  
 opcao_chrome.add_argument('--disable-gpu') 
 
+#       POR FAZER
+# PADRONIZAR CRIAÇÃO E LEITURA DE DIRETÓRIOS NA ABERTURA DO EXECUTÁVEL
+# TEMPO DE LOGIN PARA O USUÁRIO
+# SEPARAR VALOR PROCESSOS NA PRIMEIRA COLUNA
 
 class mainSAJ:  
-
+    
+    
     #PATHS
-    nome_excel_leitura = 'processos.xlsx'
+    nome_excel_leitura = 'Extracao.xlsx'
+    # nome_excel_leitura = 'processos.xlsx'
     path_leitura = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_Automation\\Excel_leitura\\"
     path_resultados = "Y:\\DIAFI-PRE-TRIAGEM\\Arthur\\Repos_\\Naj_\\Saj_Automation\\Excel_resultados\\"
     arquivo_csv_todos = f'{path_resultados}'
@@ -37,15 +43,15 @@ class mainSAJ:
         self.driver = webdriver.Chrome(options=chrome_opcao)
 
     def only_wait(self, by, value):
-        element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((by, value)))
+        element = WebDriverWait(self.driver, 1000).until(EC.visibility_of_element_located((by, value)))
         return element
     
     def wait_and_click(self, by, value):
-        element = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((by, value))).click()
+        element = WebDriverWait(self.driver, 1000).until(EC.element_to_be_clickable((by, value))).click()
         return element
     
     def wait_and_send_keys(self, by, value, keys):
-        element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((by, value)))
+        element = WebDriverWait(self.driver, 1000).until(EC.visibility_of_element_located((by, value)))
         element.send_keys(keys)
         return element
 
@@ -66,10 +72,12 @@ class mainSAJ:
         trs = tbody.find_elements(By.TAG_NAME, 'tr')
         
         for row in trs:
+            
             new_row = []    
             new_row.append(row.text.replace("\n", ";"))
-            new_row.insert(0, valor.replace(',"',';'))
-            new_row = np.array(new_row)            
+            new_row.insert(0, valor)
+            
+            new_row = np.array(new_row)
             new_row = new_row.T            
             lista_loop.append(new_row)
 
