@@ -126,9 +126,9 @@ class mainSAJ:
         else:
             self.driver.get("https://saj.pgfn.fazenda.gov.br/saj/login.jsf?dswid=-46")
            
-            campo_login = self.wait_and_send_keys(By.ID, "frmLogin:username","49437584877")
-            campo_senha = self.wait_and_send_keys(By.ID, "frmLogin:password","melancia123")
-            botao_ok = self.wait_and_click(By.ID, "frmLogin:entrar")
+            self.wait_and_send_keys(By.ID, "frmLogin:username","49437584877")
+            self.wait_and_send_keys(By.ID, "frmLogin:password","melancia123")
+            self.wait_and_click(By.ID, "frmLogin:entrar")
               
     def auto_consulta_processo(self, valor):
 
@@ -155,7 +155,9 @@ class mainSAJ:
     def auto_processa_excel_leitura(self, df):
         # automatiza o conusmo dos numeros de processo no arquivo excel de leitura
         for i, row in df.iterrows():
-                    valor = row.iloc[0]  
+                    valor = row.iloc[0]  # tratar na saída 
+                    print(type(valor))
+                    print(valor)
                     self.auto_consulta_processo(valor)
                   
                     self.processo_verifica_tipo_processo(valor)
