@@ -2,7 +2,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import os
-from pathlib import Path
 from datetime import date
 import glob
 import pandas as pd
@@ -35,7 +34,7 @@ class Saj:
 
     # path_leitura = 'C:\\Files_\\Saj\\Excel_leitura\\'
     path_leitura = f'{os.getcwd()}\\Arquivos_gerados\\'
-    path_resultados = 'C:\\Files_\\Saj\\Excel_resultados\\'
+    path_resultados = f'{os.getcwd()}\\Excel_resultados\\'
     
     # nome_excel_leitura = 'processos.xlsx'      
     arquivo_csv_todos = f'{path_resultados}'
@@ -44,7 +43,7 @@ class Saj:
 
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.add_argument("--start-maximized")
-        self.chrome_options.add_argument("--headless")
+        # self.chrome_options.add_argument("--headless")
         self.chrome_options.add_argument('--disable-gpu')
         self.driver = webdriver.Chrome(options=self.chrome_options)
         path_resultados_completo = os.path.join(self.path_resultados,)
@@ -137,9 +136,9 @@ class Saj:
         else:
             self.driver.get("https://saj.pgfn.fazenda.gov.br/saj/login.jsf?dswid=-46")
 
-            self.wait_and_send_keys(By.ID, "frmLogin:username","49437584877")
-            self.wait_and_send_keys(By.ID, "frmLogin:password","melancia123")
-            self.wait_and_click(By.ID, "frmLogin:entrar")
+            # self.wait_and_send_keys(By.ID, "frmLogin:username","CPF")
+            # self.wait_and_send_keys(By.ID, "frmLogin:password","melancia123")
+            # self.wait_and_click(By.ID, "frmLogin:entrar")
 
     def auto_consulta_processo(self, valor):
 
@@ -197,3 +196,7 @@ class Saj:
         self.processo_consultar_processos()
 
 
+
+if __name__ == '__main__':
+    app = Saj()
+    app.run()

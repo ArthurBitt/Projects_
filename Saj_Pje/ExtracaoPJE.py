@@ -13,7 +13,7 @@ driver.maximize_window()
 
 nomesParaPegar = ['idpj', 'procdigdestaut', 'procdigrestaut', 'cartprecciv', 'cumsen', 'depos', 'exfis', 'caufis']
 
-# 28579616859   // u175@94#1
+
 def tableExiste():
     try:
         driver.find_element(By.XPATH, '//*[@id="formExpedientes:tbExpedientes:scPendentes_table"]')
