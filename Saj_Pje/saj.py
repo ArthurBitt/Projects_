@@ -17,13 +17,11 @@ from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 import csv
 
-# Configuração do ChromeOptions
 
 # POR FAZER
-# contador de processos pra verificar se bate com a quantidade do excel
-# PADRONIZAR CRIAÇÃO E LEITURA DE DIRETÓRIOS NA ABERTURA DO EXECUTÁVEL
+
 # TEMPO DE LOGIN PARA O USUÁRIO
-# SEPARAR VALOR PROCESSOS NA PRIMEIRA COLUNA
+
 
 class Saj:
 
