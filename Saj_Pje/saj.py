@@ -17,24 +17,16 @@ from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 import csv
 
-
 # POR FAZER
-
-# TEMPO DE LOGIN PARA O USUÁRIO
-
+# contador de processos pra verificar se bate com a quantidade do excel
 
 class Saj:
-
+    
     #PATHS
     data = date.today().strftime('%d.%m.%Y')
     nome_excel_leitura = f"Extração PJE-TRF3 - {data}.xlsx"
-
-
-    # path_leitura = 'C:\\Files_\\Saj\\Excel_leitura\\'
     path_leitura = f'{os.getcwd()}\\Arquivos_gerados\\'
-    path_resultados = f'{os.getcwd()}\\Excel_resultados\\'
-    
-    # nome_excel_leitura = 'processos.xlsx'      
+    path_resultados = f'{os.getcwd()}\\Excel_resultados_SAJ\\'   
     arquivo_csv_todos = f'{path_resultados}'
 
     def __init__(self):
@@ -134,31 +126,29 @@ class Saj:
         else:
             self.driver.get("https://saj.pgfn.fazenda.gov.br/saj/login.jsf?dswid=-46")
 
-            # self.wait_and_send_keys(By.ID, "frmLogin:username","CPF")
-            # self.wait_and_send_keys(By.ID, "frmLogin:password","melancia123")
-            # self.wait_and_click(By.ID, "frmLogin:entrar")
-
     def auto_consulta_processo(self, valor):
 
-        try:
-            self.wait_and_send_keys(By.ID, "consultarProcessoForm:numeroProcesso", valor)
-        except StaleElementReferenceException:
-            self.wait_and_send_keys(By.ID, "consultarProcessoForm:numeroProcesso", valor)
-        try:
-            self.wait_and_click(By.ID, "consultarProcessoForm:consultarProcessos")
-        except (StaleElementReferenceException, ElementClickInterceptedException):
-            # Se ocorrer uma exceção, tente localizar o elemento novamente antes de clicar
-            self.wait_and_click(By.ID, "consultarProcessoForm:consultarProcessos")
-
+        # try:
+        self.wait_and_send_keys(By.ID, "consultarProcessoForm:numeroProcesso", valor)
+        # except StaleElementReferenceException:
+        #     self.wait_and_send_keys(By.ID, "consultarProcessoForm:numeroProcesso", valor)
+        # try:
+        self.wait_and_click(By.ID, "consultarProcessoForm:consultarProcessos")
+        # except (StaleElementReferenceException, ElementClickInterceptedException):
+            
+        #     self.wait_and_click(By.ID, "consultarProcessoForm:consultarProcessos")
+        
     def auto_acessa_menu_consulta(self):
         # automatiza o acesso do menu saj para consulta de processos
+        
         nav_bar_processo = self.only_wait(By.XPATH, "//*[@id='j_idt15:formMenus:j_idt34']/ul/li[1]/a/span[1]")
+        
         webdriver.ActionChains(self.driver).move_to_element(nav_bar_processo).perform()
 
-        try:
-            self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
-        except:
-            self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
+        # try:
+        self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
+        # except:
+        #     self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
 
     def auto_processa_a_leitura_do_excel(self, df):
         # automatiza o conusmo dos numeros de processo no arquivo excel de leitura
@@ -166,23 +156,23 @@ class Saj:
             valor = row.iloc[0]
             valor = valor.strip() + ';'
             self.auto_consulta_processo(valor)
-
             self.processo_verifica_tipo_processo(valor)
-            self.auto_acessa_menu_consulta()
-
+            # erro ao localizar processo
+            try:
+                self.auto_acessa_menu_consulta()               
+            except:
+                self.wait_and_click(By.ID, 'j_idt220:btn')
+                
     def processo_consultar_processos(self):
+        
 
         ListaProcessos = glob.glob(f'{self.path_leitura}{self.nome_excel_leitura}')
 
         for numeros_de_processos in ListaProcessos:
 
             df = pd.read_excel(numeros_de_processos)
-
-            try:
-                 self.auto_processa_a_leitura_do_excel(df)
-
-            except (NoSuchElementException, ElementClickInterceptedException):
-                 continue
+            
+            self.auto_processa_a_leitura_do_excel(df)
 
         print('Finalizando...')
         time.sleep(5)
