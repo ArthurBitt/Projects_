@@ -151,7 +151,7 @@ class Saj:
             self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
 
     def auto_processa_a_leitura_do_excel(self, df):
-        # automatiza o conusmo dos numeros de processo no arquivo excel de leitura
+        # automatiza o consumo dos numeros de processo no arquivo excel de leitura
         for i, row in df.iterrows():
             valor = row.iloc[0]
             valor = valor.strip() + ';'
