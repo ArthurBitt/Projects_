@@ -57,7 +57,6 @@ class Saj:
 
         for row in trs:
 
-            
             new_row = []
             new_row.append(row.text.replace("\n", ";"))
             new_row.insert(0, valor)
@@ -66,13 +65,12 @@ class Saj:
             new_row = new_row.T
             lista_loop.append(new_row)
 
-        return new_row
+        return lista_loop
 
     def captura_html_extraido_e_escreve_linha_csv(self, valor):
         try:
             # especializa o tbody utilizado, 
-            tbody = self.only_wait(By.ID,'frmDetalhar:j_idt104:0:pgDadosBasicos')
-            
+            tbody = self.only_wait(By.XPATH, '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody') 
             #define o nome do csv
             csv_filename = f'{self.path_resultados}{'saj'.title()}.csv'
             #chama o processo de captura dos html
@@ -84,7 +82,7 @@ class Saj:
             raise  
 
 
-                    # Início Automação
+            # Início Automação
 
     def __init__(self):
 
