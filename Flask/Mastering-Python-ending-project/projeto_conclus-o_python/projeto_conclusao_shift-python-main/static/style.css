@@ -1,0 +1,65 @@
+
+.login input {
+    display: block;
+    padding-left: 10px;
+    background-color: transparent;
+    display: block;
+}
+
+.login {
+    margin: 13% 35%;
+
+}
+
+.cadastro{
+    margin: 11% 45%;
+
+}
+
+.cadastro input {
+    display: block;
+    padding-left: 10px;
+    background-color: transparent;
+    display: block;
+    margin-top: 10px;
+}
+
+
+/* Titles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 ,
+p{
+    font-weight: 700;
+    margin-top: 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* form edicao admin */
+.content-edicao{
+    margin: 7% 35%;
+}
+
+.form-admin-1{
+    margin-bottom: 55px;
+}
+
+.link_under_button{
+    margin-top: 10px;
+}
+
+/* tabela admin */
+.table-admin{
+    border: #03152b 5px solid;
+    width : 40%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.btn-admin{
+margin-top: 12px;
+}
