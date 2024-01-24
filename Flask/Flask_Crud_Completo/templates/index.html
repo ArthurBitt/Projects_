@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%include 'inheritance_css_bootstrap.html'%}
+    <title>{{titulo}}</title>
+</head>
+
+<body>
+    {%include 'inheritance_navbar.html'%}
+    <div align='center' class="container">
+
+        {%include 'inheritance_flash.html'%}
+
+        <h1>{{titulo}}</h1>
+    </div>
+
+    {%include 'inheritance_table.html'%}
+
+    <div align="center">
+
+        <a href="/cadastro"><button type="button" class="btn btn-outline-primary">Cadastrar</button></a>
+        <a href="/logout"><button type="button" class="btn btn-outline-danger">logout</button></a>
+    </div>
+
+    {%include 'inheritance_js.html'%}
+
+</html>

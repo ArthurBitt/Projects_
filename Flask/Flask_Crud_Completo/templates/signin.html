@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%include 'inheritance_css_bootstrap.html'%}
+    <title>{{title}}</title>
+</head>
+<body>
+
+    <h1>{{title}}</h1>
+    
+    <form action="/response/signin" method='post'>
+    
+        <div class="form-floating mb-3">
+            <input name='nome' type="text" class="form-control" id="nome" placeholder="Nome">
+            <label for="nome">Nome</label>
+        </div>
+        <div class="form-floating">
+            <input name='nickname' type="text" class="form-control" id="nickname" placeholder="Nick">
+            <label for="nickname">Nickname</label>
+        </div>
+        <div class="form-floating">
+            <input name='senha' type="text" class="form-control" id="senha" placeholder="Senha">
+            <label for="senha">Senha</label>
+        </div>
+    
+        <div align="center">
+            <button type="submit" class="btn btn-outline-success">Salvar</button>
+        </div>
+    </form>
+
+    {%include 'inheritance_js.html'%}
+</body>
+</html>

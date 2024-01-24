@@ -1,0 +1,118 @@
+REGRAS DE NEGÓCIO
+
+. alunos possuem um código de identificação -RA
+. Um aluno só poder estar matriculado em um curso por vez
+. cursos são compostos por disciplinas 
+. cada disciplina tem no máximo 30 alunos por turma
+. as disciplinas não são obrigatórias a depender do curso
+. as disciplinas pertencem a departamentos específicos
+. cada disciplina possui um código dfe identificação
+. alunos podem trancar matrícula, contanto que não estejam matrículados em nenhuma disciplina no semestre
+. Em cada semestre, cada aluno pode se matricular em até 9 
+disciplinas
+. é permitido reprovar no máximo 3x na disciplina
+. a faculdade comporta no máximo 3k alunos matriculados, simultaneamente, em 10 cursos distintos
+. entram por ano no máximo 300 alunos
+. existem 90 disciplinas no total 
+. um histórico escolar traz todas as disciplinas cursadas pelo aluno, e inclui nota final, frequência e período atual do curso.
+. professores podem ser cadastrados mesmo sem lecionar disciplinas.
+. cada professor lecionar no máximo 4 disciplinas diferentes.
+. cada professor é vinculado em um depto
+. professores possuem um código de professor para identificação
+. existem 40 professores trabalhando
+
+IDENTIFICANDO ENTIDADES, RELACIONAMENTOS E ATRIBUTOS.
+
+
+Lista de entidades (quantidades)
+
+.Aluno 
+.Professor
+.Disciplina
+.Curso
+.Departamento
+.Histórico
+
+Relacionamentos (verbos de ação entre entidades)
+. aluno matriculado em curso
+. aluno cursam disciplinas
+. aluno realizou disciplina
+. disciplinas compõe curso
+. disciplinas pertencem a departamento específico
+. disciplina depende de disciplina
+. departamento controla curso
+. Histórico traz disciplinas cursadas por aluno e nota final
+. Professor é vinculado a um departamento
+. professor ministra disciplina
+
+Atributos 
+
+. ALUNO
+
+- RA
+- Nome
+- Sobrenome
+- Endereço
+	. rua
+	. cep
+	. Bairro
+	. cidade
+	. número
+	. estado
+
+- código do curso
+
+. PROFESSOR
+
+- cód professor
+- nome
+- sobrenome
+- cód departamento
+- cód disciplina
+
+.DISCIPLINA
+
+- cód disciplina
+- nome disciplina
+- descrição
+- cód depto
+- núm de alunos 
+
+. CURSO
+
+- cód curso
+- nome do curso
+- código departamento
+
+. DEPARTAMENTO
+
+- cód departamento
+- nome departamentoaluno
+
+
+
+
+MEU PROCESSO
+
+.levantamento de requisitos
+.identificando entidades e relacionamentos drawio
+.digrama conceitual entidade relacionamento: cardinalidades
+.diagrama conceitual  entidade relacionamento: entidades associativas
+.dicionário de dados
+.modelo lógico
+.normalização
+	- 1FN apenas uma chave primária, valores atômicos, sem atributos multivalorados
+
+		. filiação tb alunos
+		. contato tb alunos
+		. periodo de realização tb historico
+	
+	- 2FN  os campos dependem funcionalmente de todas as partes da PK da tabela
+		
+		. telefone tb alunos
+		. rua, num_rua, cep tb alunos
+		
+	
+	- 3FN está na 3°FN, quando os campos não dependem de outros campos que não são uma pk e quando não existe dependência parcial da pk estabelecida por nenhum dos campos da tabela.
+
+.implementação

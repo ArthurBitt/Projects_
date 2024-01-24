@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%include 'inheritance_css_bootstrap.html'%}
+    <title>Editar</title>
+</head>
+<body>
+    {%include 'inheritance_navbar.html'%}
+     <hr>
+    <table class="table table-sm">
+        <thead class="table-light">
+            <tr align='center'>
+                <th>Titulo</th>
+                <th>Categoria</th>
+                <th>Console</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody align='center'>
+                {% for item in lista %}
+                <tr>
+                    <td>{{item.jogo}}</td>
+                    <td>{{item.categoria}}</td>
+                    <td>{{item.console}}</td>
+                    <td><a href="{{url_for('editar', id = item.id)}}"><button class="btn btn-outline-success">Editar</button></a></td>
+                    <td><a href="{{url_for('delete', id = item.id)}}"><button class="btn btn-outline-danger">Delete</button></a></td>
+                </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+
+    <div align="center">
+    {%include 'inheritance_flash.html'%}
+
+    </div>
+    {%include 'inheritance_js.html'%}
+</body>
+
+</html>

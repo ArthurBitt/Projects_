@@ -1,0 +1,31 @@
+<div class="container text-center">
+    <h4 class="text-center mt-4">Open Positions</h4>
+</div>
+
+{%for job in query%}
+<ul>
+    <hr>
+    <!--        key['value']-->
+    <div class="container lh-1">
+        <div class="row">
+            <div class="col-md-10">
+                <p>Title: {{ job['title'] }}</p>
+            </div>
+            <div class="col-md-10">
+                <p>Location: {{ job['location'] }}</p>
+            </div>
+            <div class="col-md-10">
+                <p>Salary: {{ job['salary'] }} {{job['symbol']}}</p>
+            </div>
+            <div class="col-2 padding-right:16px">
+
+                    <button type="button" class="btn btn-outline-primary position-absolute translate-middle "><a
+                            href="/jobs/{{job['id']}}">Apply</a>
+                    </button>
+
+            </div>
+        </div>
+    </div>
+</ul>
+{%endfor%}
+

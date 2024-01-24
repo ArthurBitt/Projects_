@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'inheritance_bootstrap.html'%}
+    <title></title>
+
+</head>
+
+<body>
+    <div>
+        {% include 'inheritance_nav.html'%}
+        {% include 'inheritance_banner.html'%}
+        {%for job in query%}
+        <ul>
+            <hr>
+            <!--        key['value']-->
+            <div class="container lh-1">
+                <div class="row">
+                    <div class="col-md-10">
+                        <p>Title: {{ job['title'] }}</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>Location: {{ job['location'] }}</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>Salary: {{ job['salary'] }} {{job['symbol']}}</p>
+                    </div>
+                    <div class="col-2 padding-right:16px">
+                    </div>
+                </div>
+            </div>
+        </ul>
+        {%endfor%}
+
+        
+        {% include 'inheritance_footer.html'%}
+        {% include 'inheritance_js_bootstrap.html' %}
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<table class="table table-sm">
+            <thead class="table-light">
+                <tr align='center'>
+                    <th>Titulo</th>
+                    <th>Categoria</th>
+                    <th>Console</th>
+                    
+                </tr>
+            </thead>
+            <tbody align='center'>
+                {% for item in lista %}
+                <tr>
+                    <td>{{item.jogo}}</td>
+                    <td>{{item.categoria}}</td>
+                    <td>{{item.console}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+</div>
+

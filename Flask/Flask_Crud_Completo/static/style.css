@@ -1,0 +1,23 @@
+/* styles.css */
+.flash-success {
+    background-color: #4CAF50;
+    /* Verde */
+    color: #FFFFFF;
+    /* Texto branco */
+    /* Outros estilos, como margens, bordas, etc., se necessário */
+}
+
+/* styles.css */
+.flash-error {
+    background-color: #FF5722;
+    /* Vermelho */
+    color: #FFFFFF;
+    /* Texto branco */
+}
+
+.flash-warning {
+    background-color: #FFC107;
+    /* Amarelo */
+    color: #333333;
+    /* Texto preto */
+}

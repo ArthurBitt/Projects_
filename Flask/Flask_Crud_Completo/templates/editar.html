@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%include 'inheritance_css_bootstrap.html'%}
+    <title>Document</title>
+</head>
+
+<body>
+
+    {% for item in lista %}
+    <form action="/response/editar" method="post">
+        
+        <input type="hidden" name="id" value="{{item.id}}">
+
+        <input type="text" name='jogo' value="{{item.jogo}}">
+        <label for="">Nem Name</label>
+
+        <input type="text" name='categoria' value="{{item.categoria}}">
+        <label for="">Nem Categoria</label>
+
+        <input type="text" name='console' value="{{item.console}}">
+        <label for="">Nem Console</label>
+
+        <button type='submit' class="btn btn-outline-success">Atualizar</button>
+    </form>
+    {%endfor%}
+
+
+    {%include 'inheritance_js.html'%}
+</body>
+
+</html>
