@@ -55,8 +55,6 @@ class Pipeline:
                 
         return lista_nomes
     
-
-
     def selecao_values_languages(self):
         lista = self.paginacao_repos()
         lista_lang = list()
@@ -71,7 +69,6 @@ class Pipeline:
                 
         return lista_lang
     
-
     def dataframe_cria(self):
         repositorios = self.paginacao_repos()
         nomes = self.selecao_values_names(repositorios)
@@ -88,7 +85,6 @@ class Pipeline:
 
         return data
     
-
     def run(self):
         obj.paginacao_repos()
         obj.selecao_values_languages()
