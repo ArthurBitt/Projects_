@@ -1,15 +1,26 @@
 from fastapi import FastAPI, Query
 import requests
 
+'''uvicorn main:app --reload
+http://127.0.0.1:8000/docs
+'''
+
 app = FastAPI()
 
 @app.get('/api/hello')
 def hello_world():
+    '''
+    ENDPOINT Hello World
+    '''
     return {'hello' :'world'}
 
 
 @app.get('/api/restaurantes/')
 def get_restaurante(request : str = Query(None)):
+    '''
+    Endpoint que retorna o json do cardápio dos restaurantes
+    '''
+
     url = 'https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json'
     response = requests.get(url)
 
