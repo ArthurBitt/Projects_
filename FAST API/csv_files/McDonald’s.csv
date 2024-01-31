@@ -1,0 +1,332 @@
+item,price,description
+Hamburger,32.42,Uma explosão de sabores em cada mordida.
+Cheeseburger,38.81,Uma opção saudável e equilibrada.
+Double Cheeseburger,50.18,"Leve e saboroso, perfeito a qualquer hora."
+McDouble,55.73,Uma opção saudável e satisfatória.
+ Quarter Pounder® with Cheese,57.48,Uma opção deliciosa e reconfortante.
+Double Quarter Pounder® with Cheese,48.59,"Leve e delicioso, perfeito para compartilhar."
+Big Mac®,45.34,Molhos deliciosos para realçar seus pratos.
+Big N’ Tasty®,35.05,Incrivelmente saboroso e gratificante.
+Big N’ Tasty® with Cheese,56.26,Uma combinação perfeita de sabores e texturas.
+Angus Bacon & Cheese,44.32,Uma opção saudável e equilibrada.
+Angus Deluxe,50.18,Sinta o sabor da tradição em cada mordida.
+Angus Mushroom & Swiss,34.91,Uma combinação única de sabores e texturas.
+Filet-O-Fish®,47.46,Uma opção deliciosa e acolhedora.
+McChicken ®,42.44,Incrivelmente refrescante e saboroso.
+McRib ®,36.22,Molhos deliciosos para realçar seus pratos.
+Premium Grilled Chicken Classic Sandwich,55.95,"Leve e delicioso, perfeito para compartilhar."
+Premium Crispy Chicken Classic Sandwich,34.22,Sabor autêntico e suculento.
+Premium Grilled Chicken Club Sandwich,39.01,Uma deliciosa refeição para toda a família.
+Premium Crispy Chicken Club Sandwich,43.48,Sabor caseiro que aquece a alma.
+Premium Grilled Chicken Ranch BLT Sandwich,30.25,Sabor caseiro que aquece a alma.
+Premium Crispy Chicken Ranch BLT Sandwich,38.44,Sinta o sabor da tradição em cada mordida.
+Southern Style Crispy Chicken Sandwich,35.01,Incrivelmente saboroso e gratificante.
+Ranch Snack Wrap® (Crispy),30.67,Uma mistura de doçura e crocância.
+Ranch Snack Wrap® (Grilled),48.33,A escolha ideal para ocasiões especiais.
+Honey Mustard Snack Wrap® (Crispy),56.33,Incrivelmente saboroso e satisfatório.
+Honey Mustard Snack Wrap® (Grilled),55.05,Uma opção saudável e equilibrada.
+Chipotle BBQ Snack Wrap® (Crispy),30.08,Incrivelmente refrescante e saboroso.
+Chipotle BBQ Snack Wrap® (Grilled),54.4,Uma explosão de sabores em um só prato.
+Angus Bacon & Cheese Snack Wrap,35.34,Um clássico que nunca sai de moda.
+Angus Chipotle BBQ Bacon,50.45,Uma combinação perfeita de sabores e texturas.
+Angus Chipotle BBQ Bacon Snack Wrap,42.7,Para os amantes de bebidas geladas.
+Angus Deluxe Snack Wrap,49.04,Sabor autêntico com ingredientes frescos.
+Angus Mushroom & Swiss Snack Wrap,53.47,Uma opção saudável e equilibrada.
+Mac Snack Wrap,44.47,Sabores autênticos que aquecem o coração.
+Small French Fries,58.5,Um clássico que nunca sai de moda.
+Medium French Fries,40.29,Uma opção deliciosa e acolhedora.
+Large French Fries,45.9,Uma experiência refrescante e doce.
+Ketchup Packet,47.02,Incrivelmente refrescante e saboroso.
+Salt Packet,55.61,A escolha ideal para ocasiões especiais.
+Chicken McNuggets® (4 piece),43.95,Incrivelmente refrescante e saboroso.
+Chicken McNuggets® (6 piece),38.22,Uma explosão de sabores em cada mordida.
+Chicken McNuggets® (10 piece),58.63,"Leve e delicioso, perfeito para compartilhar."
+Barbeque Sauce,31.21,Sinta o sabor do verão a cada gole.
+Honey,40.35,O acompanhamento perfeito para qualquer refeição.
+Hot Mustard Sauce,54.49,Incrivelmente saboroso e gratificante.
+Sweet ‘N Sour Sauce,35.69,O acompanhamento perfeito para qualquer refeição.
+Chicken Selects® Premium Breast Strips (3 pc),33.69,Sinta o sabor do verão a cada gole.
+Chicken Selects® Premium Breast Strips (5 pc),53.14,Incrivelmente refrescante e saboroso.
+Spicy Buffalo Sauce,35.12,Sabor exótico que vai te surpreender.
+Creamy Ranch Sauce,40.21,Para os amantes de bebidas geladas.
+Tangy Honey Mustard Sauce,39.03,Uma explosão de sabores em um só prato.
+Southwestern Chipotle Barbeque Sauce,41.95,Para os amantes de bebidas geladas.
+Premium Southwest Salad with Grilled Chicken,56.48,"Leve e delicioso, perfeito para compartilhar."
+Premium Southwest Salad with Crispy Chicken,51.78,Uma bebida gelada e revigorante.
+Premium Southwest Salad (without chicken),38.57,A escolha perfeita para um dia especial.
+Premium Bacon Ranch Salad with Grilled Chicken,41.41,Sinta o sabor do verão a cada gole.
+Premium Bacon Ranch Salad with Crispy Chicken,59.86,Uma opção saudável e equilibrada.
+Premium Bacon Ranch Salad (without chicken),49.86,Uma experiência refrescante e doce.
+Premium Caesar Salad with Grilled Chicken,41.09,Sabor autêntico e suculento.
+Premium Caesar Salad with Crispy Chicken,54.21,Uma opção deliciosa e reconfortante.
+Premium Caesar Salad (without chicken),45.24,"Leve e delicioso, perfeito para compartilhar."
+Side Salad,55.75,Sabor exótico que vai te surpreender.
+Butter Garlic Croutons,46.93,Incrivelmente saboroso e gratificante.
+Snack Size Fruit & Walnut Salad,59.64,Uma combinação perfeita de sabores e texturas.
+Salad Dressings,30.99,Uma explosão de sabores em cada mordida.
+Newman’s Own® Creamy Southwest Dressing,33.12,Uma opção deliciosa e acolhedora.
+Newman’s Own® Creamy Caesar Dressing,40.86,Uma opção saudável e equilibrada.
+Newman’s Own® Low Fat Balsamic Vinaigrette,36.37,Sabor autêntico e suculento.
+Newman’s Own® Low Fat Family Recipe Italian Dressing,56.2,"Leve e delicioso, perfeito para compartilhar."
+Newman’s Own® Ranch Dressing,30.57,Sinta o sabor do verão a cada gole.
+Egg McMuffin®,40.93,Incrivelmente saboroso e gratificante.
+Sausage McMuffin®,31.2,Uma combinação perfeita de sabores e texturas.
+Sausage McMuffin® with Egg,36.09,Sabores autênticos que aquecem o coração.
+English Muffin,39.79,Uma opção saudável e equilibrada.
+"Bacon, Egg & Cheese Biscuit (Regular Size Biscuit)",44.31,Uma bebida gelada e revigorante.
+"Bacon, Egg & Cheese Biscuit (Large Size Biscuit)",55.88,Uma combinação perfeita de sabores e texturas.
+Sausage Biscuit with Egg (Regular Size Biscuit),43.94,Para os amantes de café e cappuccinos.
+Sausage Biscuit with Egg (Large Size Biscuit),45.63,Para os amantes de bebidas geladas.
+Sausage Biscuit (Regular Size Biscuit),34.89,Perfeito para quem gosta de sabores picantes.
+Sausage Biscuit (Large Size Biscuit),32.29,"Leve e delicioso, perfeito para compartilhar."
+Southern Style Chicken Biscuit (Regular Size Biscuit),52.48,A escolha ideal para ocasiões especiais.
+Southern Style Chicken Biscuit (Large Size Biscuit),35.25,Para os amantes de bebidas geladas.
+"Steak, Egg & Cheese Bagel",30.77,Para os amantes de bebidas geladas.
+"Bacon, Egg & Cheese McGriddles®",49.43,Para os amantes de bebidas geladas.
+"Sausage, Egg & Cheese McGriddles®",41.9,Sinta o sabor do verão a cada gole.
+Sausage McGriddles®,48.08,Uma opção deliciosa e acolhedora.
+Big Breakfast® (Regular Size Biscuit),45.42,Molhos deliciosos para realçar seus pratos.
+Big Breakfast® (Large Size Biscuit),47.83,Uma opção deliciosa e acolhedora.
+Big Breakfast with Hotcakes (Regular Size Biscuit),48.75,Uma opção deliciosa e acolhedora.
+Big Breakfast with Hotcakes (Large Size Biscuit),48.98,Sabores autênticos que aquecem o coração.
+Sausage Burrito,33.8,Uma bebida irresistível e refrescante.
+McSkillet™ Burrito with Sausage,38.07,Uma explosão de sabores em cada mordida.
+Hotcakes,55.2,Uma experiência refrescante e doce.
+Hotcakes and Sausage,37.69,Sabor caseiro que aquece a alma.
+Hotcake Syrup,40.5,Uma experiência refrescante e doce.
+Whipped Margarine (1 pat),34.94,A escolha ideal para ocasiões especiais.
+Hash Brown,35.97,Sabor exótico que vai te surpreender.
+Grape Jam,43.35,Uma bebida gelada e revigorante.
+Strawberry Preserves,42.21,"Leve e delicioso, perfeito para compartilhar."
+"Bacon, Egg & Cheese Bagel",48.74,Sinta o sabor do verão a cada gole.
+Fruit & Maple Oatmeal,37.85,Sabor autêntico e suculento.
+Fruit & Maple Oatmeal without Brown Sugar,48.17,Incrivelmente refrescante e saboroso.
+Hamburger Happy Meal,59.03,Incrivelmente saboroso e gratificante.
+4 Piece Chicken McNuggets Happy Meal,50.17,Uma opção deliciosa e satisfatória.
+6 Piece Chicken McNuggets® Happy Meal,57.05,"Leve e delicioso, ótimo para compartilhar."
+Fruit ‘n Yogurt Parfait (7 oz),51.63,Uma bebida gelada e revigorante.
+Low Fat Caramel Dip,57.2,Sinta o sabor do verão a cada gole.
+Vanilla Reduced Fat Ice Cream Cone,57.9,A escolha ideal para ocasiões especiais.
+Kiddie Cone,40.88,Uma bebida gelada e revigorante.
+Strawberry Sundae,48.68,Uma bebida gelada e revigorante.
+Hot Caramel Sundae,58.61,Sabor exótico que vai te surpreender.
+Hot Fudge Sundae,39.56,Uma experiência refrescante e doce.
+Peanuts (for Sundaes),36.5,Uma experiência refrescante e doce.
+McFlurry® with M&M’S® Candies (12 fl oz cup),30.14,Uma explosão de sabores em cada mordida.
+McFlurry® with OREO® Cookies (12 fl oz cup),54.66,Uma mistura de doçura e crocância.
+Baked Hot Apple Pie,31.24,A escolha saudável para um dia agitado.
+Cinnamon Melts,42.54,Sabor autêntico com ingredientes frescos.
+McDonaldland® Cookies,31.22,Para os amantes de bebidas geladas.
+Chocolate Chip Cookie,34.5,Uma opção deliciosa e acolhedora.
+Oatmeal Raisin Cookie,59.51,O acompanhamento perfeito para qualquer refeição.
+Sugar Cookie,55.25,A escolha ideal para ocasiões especiais.
+Apple Dippers with Low Fat Caramel Dip,55.7,Molhos deliciosos para realçar seus pratos.
+Chocolate McCafé® Shake (12 fl oz cup),46.44,Incrivelmente saboroso e gratificante.
+Chocolate McCafé® Shake (16 fl oz cup),54.04,Molhos deliciosos para realçar seus pratos.
+Chocolate McCafé® Shake (22 fl oz cup),58.07,Para os amantes de bebidas geladas.
+Chocolate Triple Thick® Shake (12 fl oz cup),32.35,Sabor exótico que vai te surpreender.
+Chocolate Triple Thick® Shake (16 fl oz cup),32.38,Sinta o sabor da tradição em cada mordida.
+Chocolate Triple Thick® Shake (21 fl oz cup),43.69,Incrivelmente saboroso e gratificante.
+Chocolate Triple Thick® Shake (32 fl oz cup),55.99,Uma opção deliciosa e acolhedora.
+Snack Size McFlurry® with M&M’S® Candies,56.9,Sabor autêntico e suculento.
+Snack Size McFlurry® with OREO® Cookies,34.09,Para os amantes de bebidas geladas.
+Strawberry McCafé® Shake (12 fl oz cup),53.76,Perfeito para quem gosta de sabores picantes.
+Strawberry McCafé® Shake (16 fl oz cup),47.24,Sabor caseiro que aquece a alma.
+Strawberry McCafé® Shake (22 fl oz cup),38.54,Sinta o sabor do verão a cada gole.
+Strawberry Triple Thick® Shake (12 fl oz cup),49.13,Molhos deliciosos para realçar seus pratos.
+Strawberry Triple Thick® Shake (16 fl oz cup),41.04,Sabores tradicionais que nunca desapontam.
+Strawberry Triple Thick® Shake (21 fl oz cup),45.0,Uma bebida gelada e revigorante.
+Strawberry Triple Thick® Shake (32 fl oz cup),35.85,Sabores autênticos que aquecem o coração.
+Vanilla McCafé® Shake (12 fl oz cup),49.12,A escolha saudável para um dia agitado.
+Vanilla McCafé® Shake (16 fl oz cup),38.8,Sinta o sabor do verão a cada gole.
+Vanilla McCafé® Shake (22 fl oz cup),37.09,Uma escolha saudável e deliciosa.
+Vanilla Triple Thick Shake® (32 fl oz cup),58.62,Sabor autêntico e suculento.
+Vanilla Triple Thick® Shake (12 fl oz cup),47.3,Sinta o sabor do verão a cada gole.
+Vanilla Triple Thick® Shake (16 fl oz cup),45.31,Uma opção saudável e equilibrada.
+Vanilla Triple Thick® Shake (21 fl oz cup),53.04,Sinta o sabor do verão a cada gole.
+1% Low Fat Milk Jug,54.66,Sabor autêntico com ingredientes frescos.
+1% Low Fat Chocolate Milk Jug,49.74,Uma opção saudável e equilibrada.
+Minute Maid® 100% Apple Juice Box,47.74,Uma experiência refrescante e doce.
+Dasani® Water,43.05,Uma opção deliciosa e acolhedora.
+Minute Maid® Orange Juice (Small),40.6,Sabor autêntico e suculento.
+Minute Maid® Orange Juice (Medium),31.2,Para os amantes de bebidas geladas.
+Minute Maid® Orange Juice (Large),47.3,Incrivelmente saboroso e gratificante.
+Coca-Cola® Classic (Child),32.12,Uma deliciosa refeição para toda a família.
+Coca-Cola® Classic (Small),47.68,Uma experiência refrescante e doce.
+Coca-Cola® Classic (Medium),56.6,Para os amantes de bebidas geladas.
+Coca-Cola® Classic (Large),49.53,Sabores autênticos que aquecem o coração.
+Diet Coke® (Child),42.76,Uma opção deliciosa e acolhedora.
+Diet Coke® (Small),38.83,Uma bebida gelada e revigorante.
+Diet Coke® (Medium),52.85,Sabor exótico que vai te surpreender.
+Diet Coke® (Large),35.59,Uma experiência refrescante e doce.
+Sprite® (Child),59.38,Incrivelmente refrescante e saboroso.
+Sprite® (Small),47.29,Uma mistura de doçura e crocância.
+Sprite® (Medium),52.31,Sabor caseiro que aquece a alma.
+Sprite® (Large),34.05,Sabor autêntico e suculento.
+Hi-C® Orange Lavaburst (Child),55.6,Uma opção deliciosa e acolhedora.
+Hi-C® Orange Lavaburst (Small),57.45,Sabor exótico que vai te surpreender.
+Hi-C® Orange Lavaburst (Medium),57.23,Uma opção deliciosa e acolhedora.
+Hi-C® Orange Lavaburst (Large),35.26,Sabor exótico que você vai adorar.
+POWERade® Mountain Blast (Child),47.53,Sinta o sabor do verão a cada gole.
+POWERade® Mountain Blast (Small),45.83,Uma opção saudável e satisfatória.
+POWERade® Mountain Blast (Medium),46.56,Para os amantes de café e cappuccinos.
+POWERade® Mountain Blast (Large),44.78,Uma opção deliciosa e acolhedora.
+Iced Tea (Child),30.22,Uma explosão de sabores em cada mordida.
+Iced Tea (Small),56.25,Deliciosos molhos para realçar seu prato.
+Iced Tea (Medium),30.62,Sinta o sabor da tradição em cada mordida.
+Iced Tea (Large),51.06,Molhos deliciosos para realçar seus pratos.
+Coffee (Small),50.86,A escolha saudável para um dia agitado.
+Coffee (Large),51.66,A escolha perfeita para um dia especial.
+Coffee Cream,39.25,Uma deliciosa refeição para toda a família.
+Sugar Packet,42.61,Sinta o sabor da tradição em cada mordida.
+"EQUAL® 0
+Calorie Sweetener",55.77,Para os amantes de bebidas geladas.
+"SPLENDA® No
+Calorie Sweetener",39.37,Sabores autênticos que aquecem o coração.
+Iced Coffee– Caramel (Small),54.69,Sinta o sabor do verão a cada gole.
+Iced Coffee– Caramel (Medium),49.06,Incrivelmente saboroso e gratificante.
+Iced Coffee– Caramel (Large),37.17,Para os amantes de bebidas geladas.
+Iced Coffee– Hazelnut (Small),54.0,Sabores únicos que vão surpreender você.
+Iced Coffee– Hazelnut (Medium),59.87,Incrivelmente saboroso e gratificante.
+Iced Coffee– Hazelnut (Large),50.21,Uma combinação perfeita de sabores e texturas.
+Iced Coffee– Regular (Small),43.23,Uma opção saudável e satisfatória.
+Iced Coffee– Regular (Medium),48.91,A escolha ideal para ocasiões especiais.
+Iced Coffee– Regular (Large),52.18,Uma experiência refrescante e doce.
+Iced Coffee– Vanilla (Small),59.08,Incrivelmente saboroso e gratificante.
+Iced Coffee– Vanilla (Medium),51.26,Sabores autênticos que aquecem o coração.
+Iced Coffee– Vanilla (Large),44.27,Sabor exótico que vai te surpreender.
+Iced Coffee with Sugar Free Vanilla Syrup (Small),31.99,Uma combinação perfeita de sabores e texturas.
+Iced Coffee with Sugar Free Vanilla Syrup (Medium),46.17,Sabor autêntico e suculento.
+Iced Coffee with Sugar Free Vanilla Syrup (Large),59.06,Uma bebida gelada e revigorante.
+Sweet Tea (Child),33.61,Molhos deliciosos para realçar seus pratos.
+Sweet Tea (Large),38.48,Sabor caseiro que aquece a alma.
+Sweet Tea (Medium),39.57,Sabores autênticos que aquecem o coração.
+Sweet Tea (Small),31.11,Uma experiência refrescante e doce.
+Nonfat Cappuccino (Small),42.91,Sabor autêntico e suculento.
+Nonfat Cappuccino (Medium),53.23,Um clássico que nunca sai de moda.
+Nonfat Cappuccino (Large),49.1,Sabores tradicionais que nunca desapontam.
+Nonfat Latte (Small),45.4,Sabor caseiro que aquece a alma.
+Nonfat Latte (Medium),39.2,A escolha ideal para ocasiões especiais.
+Nonfat Latte (Large),42.61,Sabor autêntico e suculento.
+Nonfat Caramel Cappuccino (Small),55.68,"Leve e delicioso, perfeito para compartilhar."
+Nonfat Caramel Cappuccino (Medium),44.74,Para os amantes de comida caseira.
+Nonfat Caramel Cappuccino (Large),52.21,Uma experiência refrescante e doce.
+Nonfat Caramel Latte (Small),34.97,Sabor autêntico com ingredientes frescos.
+Nonfat Caramel Latte (Medium),37.55,Para os amantes de bebidas geladas.
+Nonfat Caramel Latte (Large),45.97,Sabor caseiro que aquece a alma.
+Nonfat Hazelnut Cappuccino (Small),42.89,Sinta o sabor da tradição em cada mordida.
+Nonfat Hazelnut Cappuccino (Medium),54.83,Sabor autêntico e suculento.
+Nonfat Hazelnut Cappuccino (Large),56.28,"Leve e delicioso, perfeito para compartilhar."
+Nonfat Hazelnut Latte (Small),39.33,Uma explosão de sabores em um só prato.
+Nonfat Hazelnut Latte (Medium),54.13,Para os amantes de café e cappuccinos.
+Nonfat Hazelnut Latte (Large),46.37,Sinta o sabor da tradição em cada mordida.
+Nonfat Vanilla Cappuccino (Small),47.28,Sabor exótico que vai te surpreender.
+Nonfat Vanilla Cappuccino (Medium),52.55,Molhos deliciosos para realçar seus pratos.
+Nonfat Vanilla Cappuccino (Large),35.74,Uma mistura de doçura e crocância.
+Nonfat Vanilla Latte (Small),40.86,Incrivelmente saboroso e gratificante.
+Nonfat Vanilla Latte (Medium),53.55,A escolha ideal para ocasiões especiais.
+Nonfat Vanilla Latte (Large),58.35,Sabor caseiro que aquece a alma.
+Nonfat Cappuccino with Sugar Free Vanilla Syrup (Small),42.38,Uma bebida gelada e revigorante.
+Nonfat Cappuccino with Sugar Free Vanilla Syrup (Medium),47.98,Uma opção saudável e equilibrada.
+Nonfat Cappuccino with Sugar Free Vanilla Syrup (Large),30.09,Sinta o sabor do verão a cada gole.
+Nonfat Latte with Sugar Free Vanilla Syrup (Small),47.3,Sinta o sabor do verão a cada gole.
+Nonfat Latte with Sugar Free Vanilla Syrup (Medium),48.33,Sabor autêntico e suculento.
+Nonfat Latte with Sugar Free Vanilla Syrup (Large),57.63,Incrivelmente refrescante e saboroso.
+Mocha with Nonfat Milk (Small),54.67,Uma opção saudável e equilibrada.
+Mocha with Nonfat Milk (Medium),56.72,Uma opção saudável e equilibrada.
+Mocha with Nonfat Milk (Large),56.05,Uma bebida gelada e revigorante.
+Hot Chocolate with Nonfat Milk (Small),48.52,Molhos deliciosos para realçar seus pratos.
+Hot Chocolate with Nonfat Milk (Medium),56.76,Para os amantes de café e cappuccinos.
+Hot Chocolate with Nonfat Milk (Large),42.93,Uma combinação perfeita de sabores e texturas.
+Iced Nonfat Latte (Small),33.66,Uma combinação perfeita de sabores e texturas.
+Iced Nonfat Latte (Medium),35.99,Incrivelmente refrescante e saboroso.
+Iced Nonfat Latte (Large),51.49,Sabor exótico que vai te surpreender.
+Iced Nonfat Caramel Latte (Small),47.04,Uma opção deliciosa e acolhedora.
+Iced Nonfat Caramel Latte (Medium),34.25,Molhos deliciosos para realçar seus pratos.
+Iced Nonfat Caramel Latte (Large),56.52,Sabor caseiro que aquece a alma.
+Iced Nonfat Hazelnut Latte (Small),40.85,Incrivelmente saboroso e gratificante.
+Iced Nonfat Hazelnut Latte (Medium),43.39,Uma opção saudável e equilibrada.
+Iced Nonfat Hazelnut Latte (Large),41.73,Sinta o sabor do verão a cada gole.
+Iced Nonfat Vanilla Latte (Small),42.04,Sinta o sabor da natureza em cada mordida.
+Iced Nonfat Vanilla Latte (Medium),58.91,Uma opção deliciosa e acolhedora.
+Iced Nonfat Vanilla Latte (Large),52.66,Uma opção deliciosa e acolhedora.
+Iced Nonfat Latte with Sugar Free Vanilla Syrup (Small),58.96,"Leve e delicioso, ótimo para compartilhar."
+Iced Nonfat Latte with Sugar Free Vanilla Syrup (Medium),32.58,Uma explosão de sabores em um só prato.
+Iced Nonfat Latte with Sugar Free Vanilla Syrup (Large),37.82,A combinação perfeita de doçura e frutas.
+Iced Mocha with Nonfat Milk (Medium),47.43,"Leve e delicioso, ótimo para compartilhar."
+Iced Nonfat Caramel Mocha (Large),37.34,Uma explosão de sabores em cada mordida.
+Iced Nonfat Caramel Mocha (Medium),34.0,Uma opção refrescante e saudável.
+Iced Nonfat Caramel Mocha (Small),54.77,Sabores tradicionais que nunca desapontam.
+Nonfat Caramel Mocha (Large),35.23,Uma opção deliciosa e acolhedora.
+Nonfat Caramel Mocha (Medium),40.35,"Leve e delicioso, perfeito para compartilhar."
+Nonfat Caramel Mocha (Small),37.55,Uma combinação perfeita de sabores e texturas.
+Cappuccino (Small),48.72,Para os amantes de bebidas geladas.
+Cappuccino (Medium),48.59,Uma explosão de sabores em cada mordida.
+Cappuccino (Large),33.93,Sabor autêntico com ingredientes frescos.
+Latte (Small) ,32.26,Sabores tradicionais que nunca desapontam.
+Latte (Medium),50.03,Sabor autêntico com ingredientes frescos.
+Latte (Large),56.25,Sabores autênticos que aquecem o coração.
+Caramel Cappuccino (Small),34.75,Uma mistura de doçura e crocância.
+Caramel Cappuccino (Medium),37.94,A escolha ideal para ocasiões especiais.
+Caramel Cappuccino (Large),44.85,Um clássico que nunca sai de moda.
+Caramel Latte (Small),32.54,Uma opção saudável e equilibrada.
+Caramel Latte (Medium),58.91,Sabor exótico que vai te surpreender.
+Caramel Latte (Large),44.05,Uma experiência refrescante e doce.
+Hazelnut Cappuccino (Small),58.77,Uma bebida gelada e revigorante.
+Hazelnut Cappuccino (Medium),41.18,Sabores autênticos que aquecem o coração.
+Hazelnut Cappuccino (Large),53.36,Sabor caseiro que aquece a alma.
+Hazelnut Latte (Small),42.04,Uma mistura de doçura e crocância.
+Hazelnut Latte (Medium),54.16,Uma explosão de sabores em cada mordida.
+Hazelnut Latte (Large),31.39,Sabor autêntico com ingredientes frescos.
+Vanilla Cappuccino (Small),58.36,Incrivelmente saboroso e gratificante.
+Vanilla Cappuccino (Medium),39.25,A escolha perfeita para um dia especial.
+Vanilla Cappuccino (Large),41.38,A escolha saudável para um dia agitado.
+Vanilla Latte (Small),50.65,Sabor caseiro que aquece a alma.
+Vanilla Latte (Medium),34.42,Uma opção deliciosa e acolhedora.
+Vanilla Latte (Large),32.36,"Leve e delicioso, perfeito para compartilhar."
+Cappuccino with Sugar Free Vanilla Syrup (Small),44.28,A escolha ideal para ocasiões especiais.
+Cappuccino with Sugar Free Vanilla Syrup (Medium),32.78,Uma deliciosa refeição para toda a família.
+Cappuccino with Sugar Free Vanilla Syrup (Large),58.81,"Leve e delicioso, perfeito para compartilhar."
+Latte with Sugar Free Vanilla Syrup (Small),37.33,Incrivelmente saboroso e satisfatório.
+Latte with Sugar Free Vanilla Syrup (Medium),56.32,Para os amantes de bebidas geladas.
+Latte with Sugar Free Vanilla Syrup (Large),33.46,Molhos deliciosos para realçar seus pratos.
+Mocha (Small),57.28,Sabor autêntico e suculento.
+Mocha (Medium),32.65,Uma opção saudável e equilibrada.
+Mocha (Large),59.06,Sabores autênticos que aquecem o coração.
+Hot Chocolate (Small),59.49,Sinta o sabor da tradição em cada mordida.
+Hot Chocolate (Medium),33.98,Molhos deliciosos para realçar seus pratos.
+Hot Chocolate (Large),32.54,Uma opção deliciosa e acolhedora.
+Iced Latte (Small),48.64,Uma combinação perfeita de sabores e texturas.
+Iced Latte (Medium),31.54,Incrivelmente saboroso e gratificante.
+Iced Latte (Large),55.54,Sinta o sabor da tradição em cada mordida.
+Iced Caramel Latte (Small),34.57,Uma combinação perfeita de sabores e texturas.
+Iced Caramel Latte (Medium),52.96,Sabor autêntico com ingredientes frescos.
+Iced Caramel Latte (Large),57.35,Molhos deliciosos para realçar seus pratos.
+Iced Hazelnut Latte (Small),52.4,Uma explosão de sabores em cada mordida.
+Iced Hazelnut Latte (Medium),56.17,Uma explosão de sabores em cada mordida.
+Iced Hazelnut Latte (Large),40.87,Uma combinação perfeita de sabores e texturas.
+Iced Vanilla Latte (Small),57.96,Sinta o sabor do verão a cada gole.
+Iced Vanilla Latte (Medium),30.13,Uma explosão de sabores em um só prato.
+Iced Vanilla Latte (Large),36.63,Sinta o sabor da tradição em cada mordida.
+Iced Latte with Sugar Free Vanilla Syrup (Small),56.76,Uma opção deliciosa e acolhedora.
+Iced Latte with Sugar Free Vanilla Syrup (Medium),34.67,Uma combinação única de sabores e texturas.
+Iced Latte with Sugar Free Vanilla Syrup (Large),59.1,Uma opção saudável e equilibrada.
+Iced Mocha (Medium),48.04,Uma opção deliciosa e acolhedora.
+Caramel Mocha (Large),52.43,Incrivelmente saboroso e gratificante.
+Caramel Mocha (Medium),58.04,Sabores autênticos que aquecem o coração.
+Caramel Mocha (Small),51.28,Incrivelmente saboroso e gratificante.
+Iced Caramel Mocha (Large),46.29,Uma opção deliciosa e acolhedora.
+Iced Caramel Mocha (Medium),41.26,Incrivelmente saboroso e gratificante.
+Iced Caramel Mocha (Small),37.5,Uma opção deliciosa e satisfatória.
+Frappe Caramel (Small),59.5,"Leve e saboroso, perfeito a qualquer hora."
+Frappe Caramel (Medium),51.32,Uma experiência refrescante e doce.
+Frappe Caramel (Large),46.29,O acompanhamento perfeito para qualquer refeição.
+Frappe Mocha (Small),57.95,Deliciosos molhos para realçar seu prato.
+Frappe Mocha (Medium),51.08,Uma explosão de sabores em cada mordida.
+Frappe Mocha (Large),49.15,Uma experiência refrescante e doce.
+Strawberry Banana Smoothie (Large),47.23,Incrivelmente saboroso e gratificante.
+Strawberry Banana Smoothie (Medium),39.63,Uma experiência refrescante e doce.
+Strawberry Banana Smoothie (Small),39.79,Uma explosão de sabores em um só prato.
+Wild Berry Smoothie (Large),37.47,Sinta o sabor da tradição em cada mordida.
+Wild Berry Smoothie (Medium),48.45,Sabor exótico que vai te surpreender.
+Wild Berry Smoothie (Small),46.83,Uma experiência refrescante e doce.
