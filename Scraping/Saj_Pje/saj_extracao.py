@@ -131,28 +131,28 @@ class Saj:
             self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
         except:
             self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
-
-    
+   
     def auto_processa_a_leitura_do_excel(self, df):
         # automatiza o conusmo dos numeros de processo no arquivo excel de leitura
+        lista = list()
         for i, row in df.iterrows():
             valor = row.iloc[0]
             valor = valor.strip() + ";"
 
             self.auto_consulta_processo(valor)
             classe, valor = self.processos_encontra_numero_de_processo_e_classe_fiscal()
-            dict_processos = dict(Processo = valor.text, classe = classe.text )
-            
+            lista.append({'Processo':valor.text, 'Classe':classe.text})
             self.processo_exibe_info_prompt(classe, valor)
-            print(df)
             
-
             # erro ao localizar processo - button ok
             try:
                 self.auto_acessa_menu_consulta()
             except:
                 self.wait_and_click(By.ID, "j_idt220:btn")
 
+        dataframe = pd.DataFrame(lista)
+        dataframe.to_csv(f'{self.path_resultados}processos.csv')
+        
     def processo_consultar_processos(self):
 
         ListaProcessos = glob.glob(f"{self.path_leitura}{self.nome_excel_leitura}")
