@@ -19,8 +19,8 @@ import numpy as np
 import csv
 
 # POR FAZER
-# contador de processos pra verificar se bate com a quantidade do excel
-
+# delete arquivo processo gerado ao iniciar o codigo
+#
 
 class Saj:
 
@@ -49,21 +49,21 @@ class Saj:
         print(f"Diretório de resultados criado em {path_resultados_completo}")
 
     def only_wait(self, by, value):
-        element = WebDriverWait(self.driver, 1000).until(
+        element = WebDriverWait(self.driver, 100).until(
             EC.visibility_of_element_located((by, value))
         )
         return element
 
     def wait_and_click(self, by, value):
         element = (
-            WebDriverWait(self.driver, 1000)
+            WebDriverWait(self.driver, 100)
             .until(EC.element_to_be_clickable((by, value)))
             .click()
         )
         return element
 
     def wait_and_send_keys(self, by, value, keys):
-        element = WebDriverWait(self.driver, 1000).until(
+        element = WebDriverWait(self.driver, 100).until(
             EC.visibility_of_element_located((by, value))
         )
         element.send_keys(keys)
@@ -90,8 +90,8 @@ class Saj:
 
         return classe, valor
 
-    def processo_exibe_info_prompt(self, classe, valor):
-        print(f"Classe: {classe.text} - {valor.text}")
+    def processo_exibe_info_prompt(self, linha, classe, valor):
+        print(f" Linha: {linha}° - Classe: {classe.text} - {valor.text}")
 
     def auto_login(self):
         # automatiza a autenticação do usuário
@@ -142,7 +142,7 @@ class Saj:
             self.auto_consulta_processo(valor)
             classe, valor = self.processos_encontra_numero_de_processo_e_classe_fiscal()
             lista.append({'Processo':valor.text, 'Classe':classe.text})
-            self.processo_exibe_info_prompt(classe, valor)
+            self.processo_exibe_info_prompt(i, classe, valor)
             
             # erro ao localizar processo - button ok
             try:
@@ -151,7 +151,7 @@ class Saj:
                 self.wait_and_click(By.ID, "j_idt220:btn")
 
         dataframe = pd.DataFrame(lista)
-        dataframe.to_csv(f'{self.path_resultados}processos.csv')
+        dataframe.to_excel(f'{self.path_resultados}processos.xlsx', index=False, engine='openpyxl')
         
     def processo_consultar_processos(self):
 
