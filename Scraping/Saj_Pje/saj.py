@@ -196,6 +196,8 @@ class Saj:
             valor = valor.strip() + ";"
             self.auto_consulta_processo(valor)
             self.processo_verifica_tipo_processo(valor)
+
+           
             # erro ao localizar processo - button ok
             try:
                 self.auto_acessa_menu_consulta()

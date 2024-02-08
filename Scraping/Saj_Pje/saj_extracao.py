@@ -77,21 +77,23 @@ class Saj:
             for linha in data:
                 csv_writer.writerow(linha)
 
-    def processos_encontra_numero_de_processo_e_classe_fiscal(self):
+    def processos_encontra_classe_fiscal(self):
+                
         classe = self.only_wait(
-            By.XPATH,
-            '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[1]/td[2]/div/span[1]',
-        )
+                By.XPATH,
+                '//*[@id="frmDetalhar:j_idt104:0:pnDetail_header"]/span',
+            )
+        
+        body = self.only_wait(By.XPATH, '//*[@id="j_idt15:bodyTemplate"]')
 
-        valor = self.only_wait(
-            By.XPATH,
-            '//*[@id="frmDetalhar:j_idt104:0:pgDadosBasicos"]/tbody/tr[2]/td[2]',
-        )
-
-        return classe, valor
-
-    def processo_exibe_info_prompt(self, linha, classe, valor):
-        print(f" Linha: {linha}° - Classe: {classe.text} - {valor.text}")
+        if body:
+            try:
+                return classe
+            except:
+                return 'Classe Indisponível'
+        
+    def processo_exibe_info_prompt(self, linha, valor, classe):
+        print(f" Linha: {linha+1}°- Classe: {classe.text} Número: {valor.text}", end="\n")
 
     def auto_login(self):
         # automatiza a autenticação do usuário
@@ -133,22 +135,32 @@ class Saj:
             self.wait_and_click(By.ID, "j_idt15:formMenus:menuPerfilConsulta")
    
     def auto_processa_a_leitura_do_excel(self, df):
-        # automatiza o conusmo dos numeros de processo no arquivo excel de leitura
+        # automatiza o consumo dos numeros de processo no arquivo excel de leitura
         lista = list()
-        for i, row in df.iterrows():
-            valor = row.iloc[0]
-            valor = valor.strip() + ";"
-
-            self.auto_consulta_processo(valor)
-            classe, valor = self.processos_encontra_numero_de_processo_e_classe_fiscal()
-            lista.append({'Processo':valor.text, 'Classe':classe.text})
-            self.processo_exibe_info_prompt(i, classe, valor)
-            
-            # erro ao localizar processo - button ok
+        for i, row in df.iterrows(): 
             try:
+                
+                num_processo = row.iloc[0]
+                
                 self.auto_acessa_menu_consulta()
+                
+                self.auto_consulta_processo(num_processo)
+                
+                classe = self.processos_encontra_classe_fiscal()
+                lista.append({'Processo':num_processo, 'Classe':classe})
+                
+                print(f'Linha: {i}°')
+                continue
             except:
-                self.wait_and_click(By.ID, "j_idt220:btn")
+                continue
+
+            # try:
+            # # erro ao localizar processo - button ok
+            #     self.only_wait(By.ID, "j_idt220:btn")
+            #     continue
+            # except:
+            #     pass
+
 
         dataframe = pd.DataFrame(lista)
         dataframe.to_excel(f'{self.path_resultados}processos.xlsx', index=False, engine='openpyxl')
@@ -159,7 +171,7 @@ class Saj:
 
         for numeros_de_processos in ListaProcessos:
 
-            df = pd.read_excel(numeros_de_processos)
+            df = pd.read_excel(numeros_de_processos, header=0)
 
             self.auto_processa_a_leitura_do_excel(df)
 
