@@ -106,7 +106,8 @@ class Saj:
                 executor.submit(self.consulta_tipo_processo, valor, processo_type)
                 for processo_type in ["Inss", "Sida", "Fgts"]
             ]
-
+                     
+                     
             for future in futures:
                 try:
                     future.result()  # Obter o resultado, isso também lançará exceções se ocorrerem durante a execução

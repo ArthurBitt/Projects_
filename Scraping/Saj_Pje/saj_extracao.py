@@ -17,6 +17,7 @@ from selenium.common.exceptions import TimeoutException
 from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 import csv
+import pprint
 
 # POR FAZER
 # delete arquivo processo gerado ao iniciar o codigo
@@ -49,59 +50,38 @@ class Saj:
         print(f"Diretório de resultados criado em {path_resultados_completo}")
 
     def only_wait(self, by, value):
-        element = WebDriverWait(self.driver, 100).until(
+        element = WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((by, value))
         )
         return element
 
     def wait_and_click(self, by, value):
         element = (
-            WebDriverWait(self.driver, 100)
+            WebDriverWait(self.driver, 10)
             .until(EC.element_to_be_clickable((by, value)))
             .click()
         )
         return element
 
     def wait_and_send_keys(self, by, value, keys):
-        element = WebDriverWait(self.driver, 100).until(
+        element = WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((by, value))
         )
         element.send_keys(keys)
         return element
 
-    def processos_escreve_csv(
-        self, data, csv_filename=f"{path_resultados}processos.csv", mode="a"
-    ):
-        with open(csv_filename, mode, newline="\n") as csvfile:
-            csv_writer = csv.writer(csvfile)
-            for linha in data:
-                csv_writer.writerow(linha)
-
-    def processos_encontra_classe_fiscal(self):
-                
-        classe = self.only_wait(
-                By.XPATH,
-                '//*[@id="frmDetalhar:j_idt104:0:pnDetail_header"]/span',
-            )
-        
-        body = self.only_wait(By.XPATH, '//*[@id="j_idt15:bodyTemplate"]')
-
-        if body:
-            try:
-                return classe
-            except:
-                return 'Classe Indisponível'
-        
     def processo_exibe_info_prompt(self, linha, valor, classe):
-        print(f" Linha: {linha+1}°- Classe: {classe.text} Número: {valor.text}", end="\n")
+        print(f" Linha: {linha+1}°- Classe: {classe} Número: {valor}", end="\n")
 
     def auto_login(self):
+        
         # automatiza a autenticação do usuário
         arquivo_csv = f"{self.path_leitura}{self.nome_excel_leitura}"
         if not os.path.isfile(arquivo_csv):
             print("PROCESSOS NÃO ENCONTRADOS, POR FAVOR COLOQUE OS PROCESSOS NA PASTA")
 
         else:
+            
             self.driver.get("https://saj.pgfn.fazenda.gov.br/saj/login.jsf?dswid=-46")
 
     def auto_consulta_processo(self, valor):
@@ -143,27 +123,26 @@ class Saj:
                 num_processo = row.iloc[0]
                 
                 self.auto_acessa_menu_consulta()
-                
                 self.auto_consulta_processo(num_processo)
                 
-                classe = self.processos_encontra_classe_fiscal()
-                lista.append({'Processo':num_processo, 'Classe':classe})
-                
-                print(f'Linha: {i}°')
-                continue
+               
+                classe = self.only_wait(By.XPATH,'//*[@id="frmDetalhar:j_idt104:0:pnDetail_header"]/span')
+                classe = str(classe.text)
+                classe = ''.join([i.replace('()', '').replace('.', '') for i in classe if not i.isdigit()])
+                self.processo_exibe_info_prompt(i,num_processo,classe)
+                # self.processo_exibe_info_prompt(i,num_processo, classe)
+                lista.append({'Processo': num_processo, 'Classe': classe})
+                     
             except:
-                continue
-
-            # try:
-            # # erro ao localizar processo - button ok
-            #     self.only_wait(By.ID, "j_idt220:btn")
-            #     continue
-            # except:
-            #     pass
-
-
+                print(f"Linha{i}° Erro número processo:  {num_processo}")
+                lista.append({"Ignorados": num_processo })
+                try:
+                    self.wait_and_click(By.ID, "j_idt220:btn")
+                except:
+                    continue
+        
         dataframe = pd.DataFrame(lista)
-        dataframe.to_excel(f'{self.path_resultados}processos.xlsx', index=False, engine='openpyxl')
+        dataframe.to_excel(f'{self.path_resultados}OUTPUT SAJ-TRF3 - {self.data}.xlsx', index=False, engine='openpyxl')
         
     def processo_consultar_processos(self):
 
@@ -171,7 +150,7 @@ class Saj:
 
         for numeros_de_processos in ListaProcessos:
 
-            df = pd.read_excel(numeros_de_processos, header=0)
+            df = pd.read_excel(numeros_de_processos, header=None)
 
             self.auto_processa_a_leitura_do_excel(df)
 
